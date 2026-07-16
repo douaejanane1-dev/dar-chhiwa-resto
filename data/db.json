@@ -1,0 +1,550 @@
+{
+  "users": [
+    {
+      "id": "86bc9c72-373c-4e27-bdcf-74fd70bb1f58",
+      "name": "Admin Dar Chhiwa",
+      "email": "admin@darchhiwa.ma",
+      "passwordHash": "$2a$10$buKtmfsMrG3rARYJSv8Er.354hIVUGz6ugeYz4I.bFIUfNLpxLMNW",
+      "role": "admin",
+      "createdAt": "2026-07-12T16:36:29.859Z"
+    },
+    {
+      "id": "9cac406c-aeab-4603-9973-6bc1398a1b80",
+      "name": "Client Demo",
+      "email": "client@darchhiwa.ma",
+      "phone": "+212600000001",
+      "passwordHash": "$2a$10$C2.Ed6.LDxDIA9G0qj6cX.dwhsD6DLm0MhCPFgreyWTFQCE1uLy9q",
+      "role": "customer",
+      "createdAt": "2026-07-12T16:36:29.859Z"
+    },
+    {
+      "id": "1ef237d6-f6dc-4492-a9b0-d276aa8c35e5",
+      "createdAt": "2026-07-14T21:21:20.328Z",
+      "name": "Douae",
+      "email": "douae@gmail.com",
+      "phone": "0509080706",
+      "passwordHash": "$2a$10$twehqoQZvvQMFSAYzEG4P.cRqYFD8U4pUuSaydesAAy49zlWHpmG2",
+      "role": "customer"
+    }
+  ],
+  "categories": [
+    {
+      "id": "3f7c1e36-1f96-4207-9813-32b10f283203",
+      "name": "Tajines",
+      "nameAr": "طاجين",
+      "nameEn": "Tagines",
+      "icon": "cook-pot",
+      "order": 1
+    },
+    {
+      "id": "ee6c6d5f-e07f-42e7-ac15-b57a103cb405",
+      "name": "Grillades",
+      "nameAr": "مشوي",
+      "nameEn": "Grills",
+      "icon": "flame",
+      "order": 2
+    },
+    {
+      "id": "a045c0fc-2535-4c42-b8df-db92c072d721",
+      "name": "Sandwichs & Snacks",
+      "nameAr": "سندويشات",
+      "nameEn": "Sandwiches & Snacks",
+      "icon": "sandwich",
+      "order": 3
+    },
+    {
+      "id": "741b46c6-3400-46d5-b390-c77657dcfa44",
+      "name": "Pizza",
+      "nameAr": "بيتزا",
+      "nameEn": "Pizza",
+      "icon": "pizza",
+      "order": 4
+    },
+    {
+      "id": "8e316066-08fc-482d-b17a-ca13ba678129",
+      "name": "Salades",
+      "nameAr": "سلطة",
+      "nameEn": "Salads",
+      "icon": "salad",
+      "order": 5
+    },
+    {
+      "id": "0b9b8207-0052-4113-a038-03f732f03e90",
+      "name": "Boissons",
+      "nameAr": "مشروبات",
+      "nameEn": "Drinks",
+      "icon": "cup-soda",
+      "order": 6
+    },
+    {
+      "id": "b7fb9b95-9fdb-4879-b489-2ebd681d3490",
+      "name": "Desserts",
+      "nameAr": "حلويات",
+      "nameEn": "Desserts",
+      "icon": "cake-slice",
+      "order": 7
+    }
+  ],
+  "menuItems": [
+    {
+      "id": "1d612cae-11b1-4bb3-bbd3-a36981e4f5b6",
+      "categoryId": "3f7c1e36-1f96-4207-9813-32b10f283203",
+      "name": "Tajine Kefta aux Œufs",
+      "nameAr": "طاجين كفتة بالبيض",
+      "nameEn": "Kefta Tagine with Eggs",
+      "description": "Boulettes de viande épicées mijotées dans une sauce tomate relevée, œufs et olives.",
+      "descriptionAr": "كفتة متبلة مطبوخة فصلصة حمراء، مع البيض والزيتون.",
+      "descriptionEn": "Spiced meatballs simmered in a rich tomato sauce with eggs and olives.",
+      "price": 55,
+      "image": "https://picsum.photos/seed/resto-item-0/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 1,
+      "tags": [
+        "populaire"
+      ]
+    },
+    {
+      "id": "9c8225e5-b6d6-48e6-8501-23cf48c941a1",
+      "categoryId": "3f7c1e36-1f96-4207-9813-32b10f283203",
+      "name": "Tajine de Poulet aux Olives",
+      "nameAr": "طاجين الدجاج بالزيتون",
+      "nameEn": "Chicken Tagine with Olives",
+      "description": "Poulet fermier mijoté avec olives vertes, citron confit et épices marocaines.",
+      "descriptionAr": "دجاج بلدي مطبوخ مع الزيتون الأخضر والحامض المرقد.",
+      "descriptionEn": "Free-range chicken simmered with green olives, preserved lemon and Moroccan spices.",
+      "price": 65,
+      "image": "https://picsum.photos/seed/resto-item-1/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 0,
+      "tags": [
+        "chef"
+      ]
+    },
+    {
+      "id": "f94fe688-5a75-4c83-9b5f-794753e27aa5",
+      "categoryId": "3f7c1e36-1f96-4207-9813-32b10f283203",
+      "name": "Tajine de Veau aux Pruneaux",
+      "nameAr": "طاجين اللحم بالبرقوق",
+      "nameEn": "Veal Tagine with Prunes",
+      "description": "Veau fondant mijoté avec pruneaux et amandes grillées, sauce légèrement sucrée-salée.",
+      "descriptionAr": "لحم العجل مطبوخ مع البرقوق واللوز المحمص.",
+      "descriptionEn": "Tender veal slow-cooked with prunes and toasted almonds, sweet-savory sauce.",
+      "price": 80,
+      "image": "https://picsum.photos/seed/resto-item-2/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "fbe45f2c-f44a-42b9-bd7f-9540a5119f6f",
+      "categoryId": "ee6c6d5f-e07f-42e7-ac15-b57a103cb405",
+      "name": "Brochettes Marinées",
+      "nameAr": "بروشيت مشوية",
+      "nameEn": "Marinated Skewers",
+      "description": "Brochettes de bœuf marinées aux épices, grillées au charbon de bois.",
+      "descriptionAr": "بروشيت لحم متبل، مشوي على الفحم.",
+      "descriptionEn": "Beef skewers marinated in spices, chargrilled over charcoal.",
+      "price": 60,
+      "image": "https://picsum.photos/seed/resto-item-3/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 1,
+      "tags": [
+        "populaire"
+      ]
+    },
+    {
+      "id": "fa3e9e6a-e7a4-4726-a07f-df177c7be4e8",
+      "categoryId": "ee6c6d5f-e07f-42e7-ac15-b57a103cb405",
+      "name": "Kefta Grillée",
+      "nameAr": "كفتة مشوية",
+      "nameEn": "Grilled Kefta",
+      "description": "Kefta traditionnelle grillée, servie avec frites et salade fraîche.",
+      "descriptionAr": "كفتة بلدية مشوية، مع البطاطا المقلية والسلطة.",
+      "descriptionEn": "Traditional grilled kefta, served with fries and fresh salad.",
+      "price": 50,
+      "image": "https://picsum.photos/seed/resto-item-4/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 2,
+      "tags": []
+    },
+    {
+      "id": "7a6dbb4c-2295-4ea8-8e84-35263b4eb3f7",
+      "categoryId": "ee6c6d5f-e07f-42e7-ac15-b57a103cb405",
+      "name": "Poulet Grillé",
+      "nameAr": "دجاج مشوي",
+      "nameEn": "Grilled Chicken",
+      "description": "Quart de poulet mariné à la chermoula, grillé à point.",
+      "descriptionAr": "ربع دجاج متبل بالشرمولة، مشوي.",
+      "descriptionEn": "Quarter chicken marinated in chermoula, perfectly grilled.",
+      "price": 58,
+      "image": "https://picsum.photos/seed/resto-item-5/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "ee05bcea-c752-408d-aeae-2dc0bab6cd61",
+      "categoryId": "a045c0fc-2535-4c42-b8df-db92c072d721",
+      "name": "Sandwich Merguez",
+      "nameAr": "سندويش ميرغيز",
+      "nameEn": "Merguez Sandwich",
+      "description": "Merguez grillée, salade fraîche, frites et sauce maison.",
+      "descriptionAr": "ميرغيز، سلطة، بطاطا مقلية وصلصة خاصة.",
+      "descriptionEn": "Grilled merguez sausage, fresh salad, fries and house sauce.",
+      "price": 25,
+      "image": "https://picsum.photos/seed/resto-item-6/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 2,
+      "tags": [
+        "populaire"
+      ]
+    },
+    {
+      "id": "d4309c21-e828-4d16-b178-fdaa1f399a30",
+      "categoryId": "a045c0fc-2535-4c42-b8df-db92c072d721",
+      "name": "Sandwich Kefta",
+      "nameAr": "سندويش كفتة",
+      "nameEn": "Kefta Sandwich",
+      "description": "Kefta, fromage fondu et salade marinée.",
+      "descriptionAr": "كفتة، جبن وسلطة مشرملة.",
+      "descriptionEn": "Kefta, melted cheese and marinated salad.",
+      "price": 22,
+      "image": "https://picsum.photos/seed/resto-item-7/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 1,
+      "tags": []
+    },
+    {
+      "id": "b9800473-96d4-44b3-ab58-81770688ab5c",
+      "categoryId": "a045c0fc-2535-4c42-b8df-db92c072d721",
+      "name": "Tacos Poulet",
+      "nameAr": "تاكوس دجاج",
+      "nameEn": "Chicken Tacos",
+      "description": "Poulet, frites, fromage fondu et sauce algérienne.",
+      "descriptionAr": "دجاج، بطاطا مقلية، جبن وصلصة جزائرية.",
+      "descriptionEn": "Chicken, fries, melted cheese and Algerian sauce.",
+      "price": 30,
+      "image": "https://picsum.photos/seed/resto-item-8/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 1,
+      "tags": [
+        "populaire"
+      ]
+    },
+    {
+      "id": "46f3ba6b-49b8-4a6b-b526-83c2681ee023",
+      "categoryId": "741b46c6-3400-46d5-b390-c77657dcfa44",
+      "name": "Pizza Margherita",
+      "nameAr": "بيتزا مارغريتا",
+      "nameEn": "Margherita Pizza",
+      "description": "Sauce tomate, mozzarella fondante et basilic frais.",
+      "descriptionAr": "صلصة الطماطم، الموزاريلا والريحان الطازج.",
+      "descriptionEn": "Tomato sauce, melted mozzarella and fresh basil.",
+      "price": 45,
+      "image": "https://picsum.photos/seed/resto-item-9/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "bbb52e9d-16c7-467f-8b8e-046febef9038",
+      "categoryId": "741b46c6-3400-46d5-b390-c77657dcfa44",
+      "name": "Pizza 4 Fromages",
+      "nameAr": "بيتزا 4 أجبان",
+      "nameEn": "Four Cheese Pizza",
+      "description": "Mélange de 4 fromages fondants sur une base crème.",
+      "descriptionAr": "مزيج من 4 أنواع جبن على صلصة الكريمة.",
+      "descriptionEn": "A blend of 4 melted cheeses on a creamy base.",
+      "price": 60,
+      "image": "https://picsum.photos/seed/resto-item-10/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 0,
+      "tags": [
+        "chef"
+      ]
+    },
+    {
+      "id": "c1e7e90a-784f-4e78-b385-a48a43cd354f",
+      "categoryId": "741b46c6-3400-46d5-b390-c77657dcfa44",
+      "name": "Pizza Fruits de Mer",
+      "nameAr": "بيتزا المأكولات البحرية",
+      "nameEn": "Seafood Pizza",
+      "description": "Crevettes, calamars et sauce tomate légèrement épicée.",
+      "descriptionAr": "قريدس، كاليمار وصلصة طماطم متبلة.",
+      "descriptionEn": "Shrimp, calamari and lightly spiced tomato sauce.",
+      "price": 70,
+      "image": "https://picsum.photos/seed/resto-item-11/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 1,
+      "tags": []
+    },
+    {
+      "id": "018d6ae2-d76b-4838-9326-774d65a63df8",
+      "categoryId": "8e316066-08fc-482d-b17a-ca13ba678129",
+      "name": "Salade César",
+      "nameAr": "سلطة سيزار",
+      "nameEn": "Caesar Salad",
+      "description": "Poulet grillé, parmesan, croûtons et sauce César.",
+      "descriptionAr": "دجاج مشوي، جبن البارميزان وصلصة سيزار.",
+      "descriptionEn": "Grilled chicken, parmesan, croutons and Caesar dressing.",
+      "price": 35,
+      "image": "https://picsum.photos/seed/resto-item-12/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "d9e4e08e-a20a-49fc-bb92-d237d682c2ae",
+      "categoryId": "8e316066-08fc-482d-b17a-ca13ba678129",
+      "name": "Salade Marocaine",
+      "nameAr": "سلطة مغربية",
+      "nameEn": "Moroccan Salad",
+      "description": "Tomates, concombre, oignon et huile d'olive.",
+      "descriptionAr": "طماطم، خيار، بصل وزيت الزيتون.",
+      "descriptionEn": "Tomatoes, cucumber, onion and olive oil.",
+      "price": 20,
+      "image": "https://picsum.photos/seed/resto-item-13/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "d3c08f0d-7f1b-4963-b375-bce80bcd01bd",
+      "categoryId": "0b9b8207-0052-4113-a038-03f732f03e90",
+      "name": "Coca-Cola 33cl",
+      "nameAr": "كوكا كولا",
+      "nameEn": "Coca-Cola 33cl",
+      "description": "Boisson gazeuse fraîche.",
+      "descriptionAr": "مشروب غازي بارد.",
+      "descriptionEn": "Chilled soft drink.",
+      "price": 8,
+      "image": "https://picsum.photos/seed/resto-item-14/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "a3032d93-c989-41ff-a7cf-9451817ba413",
+      "categoryId": "0b9b8207-0052-4113-a038-03f732f03e90",
+      "name": "Jus d'Orange Frais",
+      "nameAr": "عصير برتقال طازج",
+      "nameEn": "Fresh Orange Juice",
+      "description": "Jus d'orange 100% naturel pressé minute.",
+      "descriptionAr": "عصير برتقال طبيعي 100%.",
+      "descriptionEn": "100% natural freshly squeezed orange juice.",
+      "price": 15,
+      "image": "https://picsum.photos/seed/resto-item-15/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "f206375b-9071-4421-a35a-a79cad929c73",
+      "categoryId": "0b9b8207-0052-4113-a038-03f732f03e90",
+      "name": "Thé à la Menthe",
+      "nameAr": "أتاي بالنعناع",
+      "nameEn": "Mint Tea",
+      "description": "Thé marocain traditionnel à la menthe fraîche.",
+      "descriptionAr": "أتاي مغربي أصيل بالنعناع الطازج.",
+      "descriptionEn": "Traditional Moroccan tea with fresh mint.",
+      "price": 10,
+      "image": "https://picsum.photos/seed/resto-item-16/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 0,
+      "tags": [
+        "populaire"
+      ]
+    },
+    {
+      "id": "da7158bc-0a12-4cb0-99c5-48c3145ab83d",
+      "categoryId": "b7fb9b95-9fdb-4879-b489-2ebd681d3490",
+      "name": "Msemen au Miel",
+      "nameAr": "مسمن بالعسل",
+      "nameEn": "Msemen with Honey",
+      "description": "Msemen chaud servi avec du miel et du beurre.",
+      "descriptionAr": "مسمن سخون مع العسل والزبدة.",
+      "descriptionEn": "Warm msemen served with honey and butter.",
+      "price": 18,
+      "image": "https://picsum.photos/seed/resto-item-17/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "ed3b4add-fab8-4dbc-85b4-d816f95583e6",
+      "categoryId": "b7fb9b95-9fdb-4879-b489-2ebd681d3490",
+      "name": "Chebakia",
+      "nameAr": "شباكية",
+      "nameEn": "Chebakia",
+      "description": "Pâtisserie traditionnelle au miel et graines de sésame.",
+      "descriptionAr": "حلوى تقليدية بالعسل والسمسم.",
+      "descriptionEn": "Traditional pastry with honey and sesame seeds.",
+      "price": 20,
+      "image": "https://picsum.photos/seed/resto-item-18/600/450",
+      "isAvailable": true,
+      "isFeatured": false,
+      "spicyLevel": 0,
+      "tags": []
+    },
+    {
+      "id": "3dc944f4-39ad-437b-9d2e-92474bfcf9fb",
+      "categoryId": "b7fb9b95-9fdb-4879-b489-2ebd681d3490",
+      "name": "Fondant au Chocolat",
+      "nameAr": "فوندان بالشوكولاطة",
+      "nameEn": "Chocolate Fondant",
+      "description": "Gâteau au chocolat chaud et coulant, servi avec glace vanille.",
+      "descriptionAr": "كيك شوكولاطة سخون سائل، مع مثلجات الفانيليا.",
+      "descriptionEn": "Warm molten chocolate cake, served with vanilla ice cream.",
+      "price": 28,
+      "image": "https://picsum.photos/seed/resto-item-19/600/450",
+      "isAvailable": true,
+      "isFeatured": true,
+      "spicyLevel": 0,
+      "tags": [
+        "chef"
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "f0f0135f-beb5-450e-b0c2-587def3f078a",
+      "createdAt": "2026-07-14T22:20:17.803Z",
+      "updatedAt": "2026-07-14T22:20:17.803Z",
+      "customerName": "Test User",
+      "customerPhone": "0600000000",
+      "items": [
+        {
+          "menuItemId": "test-1",
+          "name": "Tajine Poulet",
+          "price": 60,
+          "qty": 2,
+          "image": "/placeholder.jpg"
+        }
+      ],
+      "subtotal": 120,
+      "deliveryFee": 15,
+      "total": 135,
+      "status": "pending",
+      "paymentMethod": "card",
+      "paymentStatus": "unpaid",
+      "address": {
+        "label": "Home",
+        "details": "123 Rue Test",
+        "city": "Casablanca",
+        "phone": "0600000000",
+        "lat": 33.5731,
+        "lng": -7.5898
+      },
+      "notes": ""
+    },
+    {
+      "id": "5ccb8056-69d8-4f9d-8b3f-57d31e246122",
+      "createdAt": "2026-07-14T22:21:50.310Z",
+      "updatedAt": "2026-07-14T22:21:50.310Z",
+      "userId": "1ef237d6-f6dc-4492-a9b0-d276aa8c35e5",
+      "customerName": "Douae",
+      "customerPhone": "0908070606",
+      "items": [
+        {
+          "menuItemId": "9c8225e5-b6d6-48e6-8501-23cf48c941a1",
+          "name": "طاجين الدجاج بالزيتون",
+          "price": 65,
+          "qty": 1,
+          "image": "https://picsum.photos/seed/resto-item-1/600/450"
+        },
+        {
+          "menuItemId": "b9800473-96d4-44b3-ab58-81770688ab5c",
+          "name": "تاكوس دجاج",
+          "price": 30,
+          "qty": 1,
+          "image": "https://picsum.photos/seed/resto-item-8/600/450"
+        },
+        {
+          "menuItemId": "da7158bc-0a12-4cb0-99c5-48c3145ab83d",
+          "name": "مسمن بالعسل",
+          "price": 18,
+          "qty": 1,
+          "image": "https://picsum.photos/seed/resto-item-17/600/450"
+        }
+      ],
+      "subtotal": 113,
+      "deliveryFee": 15,
+      "total": 128,
+      "status": "pending",
+      "paymentMethod": "card",
+      "paymentStatus": "unpaid",
+      "address": {
+        "label": "",
+        "details": "victorfia",
+        "city": "Casablanca",
+        "phone": "0908070606",
+        "lat": 33.5731,
+        "lng": -7.5898
+      },
+      "notes": ""
+    }
+  ],
+  "settings": {
+    "name": "Dar Chhiwa",
+    "nameAr": "دار الشهيوة",
+    "nameEn": "Dar Chhiwa",
+    "tagline": "Le goût authentique, à votre porte",
+    "taglineAr": "الطعم الأصيل، على بابك",
+    "taglineEn": "Authentic taste, at your door",
+    "description": "Cuisine marocaine authentique, preparee chaque jour avec des ingredients frais et des recettes familiales. Livraison rapide jusqu'a votre porte.",
+    "descriptionAr": "مطبخ مغربي أصيل، طبخ يومي بمكونات طازجة ووصفات عائلية. توصيل سريع لباب الدار.",
+    "descriptionEn": "Authentic Moroccan cuisine, cooked daily with fresh ingredients and family recipes. Fast delivery to your door.",
+    "logo": "",
+    "coverImage": "https://picsum.photos/seed/resto-hero/600/450",
+    "phone": "+212 6 00 00 00 00",
+    "email": "contact@darchhiwa.ma",
+    "address": "Zenkat Al Massira, Hay Al Farah",
+    "city": "Casablanca",
+    "lat": 33.5731,
+    "lng": -7.5898,
+    "openingHours": "Tous les jours: 11h00 - 23h30",
+    "deliveryFee": 15,
+    "minOrder": 60,
+    "currency": "MAD",
+    "instagram": "https://instagram.com",
+    "facebook": "https://facebook.com"
+  },
+  "blogPosts": [
+    {
+      "id": "post-1",
+      "slug": "secrets-of-moroccan-tagine",
+      "title": "Les secrets d'un tagine marocain reussi",
+      "titleAr": "أسرار طاجين مغربي ناجح",
+      "titleEn": "Secrets of a Successful Moroccan Tagine",
+      "excerpt": "Decouvrez les techniques traditionnelles pour un tagine parfait a chaque fois.",
+      "excerptAr": "اكتشف التقنيات التقليدية لطاجين مثالي في كل مرة.",
+      "excerptEn": "Discover the traditional techniques for a perfect tagine every time.",
+      "content": "Le secret d'un bon tagine reside dans la cuisson lente et les epices fraiches...",
+      "contentAr": "يكمن سر الطاجين الجيد في الطهي البطيء والتوابل الطازجة...",
+      "contentEn": "The secret of a good tagine lies in slow cooking and fresh spices...",
+      "coverImage": "/uploads/blog-tagine.jpg",
+      "author": "Dar Chhiwa",
+      "published": true,
+      "createdAt": "2026-07-14T21:21:20.327Z",
+      "updatedAt": "2026-07-14T21:21:20.327Z"
+    }
+  ]
+}

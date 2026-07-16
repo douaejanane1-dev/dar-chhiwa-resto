@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w \"menu HTTP %{http_code}\\\\n\" http://localhost:3000/menu)",
+      "Bash(curl -s -o /dev/null -w \"login HTTP %{http_code}\\\\n\" http://localhost:3000/login)",
+      "Bash(curl -s -o /dev/null -w \"api health HTTP %{http_code}\\\\n\" http://localhost:3000/api/menu)",
+      "Bash(npx playwright *)",
+      "Bash(start http://localhost:3000)",
+      "Bash(openssl rand *)",
+      "Read(//c/Users/HP ElieBook/Downloads/**)",
+      "Bash(rm \"c:/Users/HP ElieBook/Downloads/package-lock.json\")",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 17004 //F)",
+      "Bash(cp \"C:\\\\Users\\\\HPELIE~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-HP-ElieBook-Downloads-dar-chhiwa-resto-template-v4-resto\\\\e939590e-781a-44a9-b053-106c44072a5c\\\\scratchpad\\\\check.mjs\" \"c:/Users/HP ElieBook/Downloads/dar-chhiwa-resto-template-v4/resto/check.mjs\")",
+      "Bash(node check.mjs)",
+      "Bash(taskkill //PID 8320 //F)",
+      "Bash(node check2.mjs)",
+      "Bash(rm -f check.mjs check2.mjs checkout-repro.png)",
+      "Bash(npm uninstall *)",
+      "Bash(curl -s -o /dev/null -w \"checkout HTTP %{http_code}\\\\n\" http://localhost:3000/checkout)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\HP ElieBook\\Downloads"
+    ]
+  }
+}
