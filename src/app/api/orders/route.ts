@@ -34,7 +34,7 @@ export async function GET() {
     return NextResponse.json({ error: "Sign in required" }, { status: 401 });
   }
   const orders =
-    session.user.role === "admin" ? getOrders() : getOrdersByUser(session.user.id);
+    session.user.role === "admin" ? await getOrders() : await getOrdersByUser(session.user.id);
   return NextResponse.json(orders);
 }
 
@@ -53,13 +53,13 @@ export async function POST(req: Request) {
   }
 
   const { items, address, customerName, customerPhone, paymentMethod, notes } = parsed.data;
-  const settings = getSettings();
+  const settings = await getSettings();
 
   const subtotal = items.reduce((sum, it) => sum + it.price * it.qty, 0);
   const deliveryFee = subtotal >= settings.minOrder ? settings.deliveryFee : settings.deliveryFee + 5;
   const total = subtotal + deliveryFee;
 
-  const order = createOrder({
+  const order = await createOrder({
     userId: session?.user?.id,
     customerName,
     customerPhone,
