@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Requête invalide" }, { status: 400 });
   }
 
-  const order = getOrderById(parsed.data.orderId);
+  const order = await getOrderById(parsed.data.orderId);
   if (!order) {
     return NextResponse.json({ error: "Commande introuvable" }, { status: 404 });
   }
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Stripe non configuré" }, { status: 503 });
   }
 
-  const settings = getSettings();
+  const settings = await getSettings();
   const currency = (settings.currency || "MAD").toLowerCase();
   const origin =
     req.headers.get("origin") ||
