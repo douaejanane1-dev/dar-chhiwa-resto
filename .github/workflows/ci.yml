@@ -10,6 +10,25 @@ jobs:
   lint-typecheck-test:
     name: Lint, typecheck, test
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: darchhiwa
+          POSTGRES_PASSWORD: ci-postgres-password
+          POSTGRES_DB: darchhiwa
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DATABASE_URL: postgresql://darchhiwa:ci-postgres-password@localhost:5432/darchhiwa?schema=public
+
     steps:
       - uses: actions/checkout@v4
 
@@ -20,6 +39,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Apply database migrations
+        run: npx prisma migrate deploy
 
       - name: Lint
         run: npm run lint
