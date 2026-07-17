@@ -33,16 +33,16 @@ export function MenuBrowser({
 
   return (
     <div>
-      <div className="sticky top-16 z-30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-4 glass border-b border-black/5">
+      <div className="sticky top-16 z-30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-4 glass border-b border-black/5 dark:border-white/10">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center gap-3 mb-4">
             <div className="relative flex-1 max-w-sm">
-              <Search size={16} className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+              <Search size={16} className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-500" />
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t("menu.search")}
-                className="w-full rounded-full border border-stone-200 bg-white py-2.5 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
+                className="w-full rounded-full border border-stone-200 dark:border-white/10 bg-white dark:bg-stone-900/40 dark:text-stone-100 dark:placeholder:text-stone-500 py-2.5 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
               />
             </div>
           </div>
@@ -67,7 +67,7 @@ export function MenuBrowser({
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         {filtered.length === 0 ? (
-          <div className="py-24 text-center text-stone-400">
+          <div className="py-24 text-center text-stone-400 dark:text-stone-500">
             <p className="text-lg">{t("menu.noResults")}</p>
           </div>
         ) : (
@@ -97,7 +97,7 @@ function CategoryPill({
     <button
       onClick={onClick}
       className={`relative shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-        active ? "text-white" : "text-stone-600 hover:text-brand bg-stone-100"
+        active ? "text-white" : "text-stone-600 dark:text-stone-300 hover:text-brand bg-stone-100 dark:bg-white/10"
       }`}
     >
       {active && (

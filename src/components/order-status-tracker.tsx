@@ -18,7 +18,7 @@ export function OrderStatusTracker({ status }: { status: OrderStatus }) {
 
   if (status === "cancelled") {
     return (
-      <div className="flex items-center gap-2 rounded-xl bg-red-50 text-red-600 px-4 py-3 text-sm font-semibold">
+      <div className="flex items-center gap-2 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-4 py-3 text-sm font-semibold">
         <XCircle size={18} /> {t("orderStatus.cancelled")}
       </div>
     );
@@ -33,7 +33,7 @@ export function OrderStatusTracker({ status }: { status: OrderStatus }) {
         return (
           <div key={step.key} className="flex-1 flex flex-col items-center relative">
             {i > 0 && (
-              <div className="absolute top-4 right-1/2 w-full h-0.5 bg-stone-200 -z-10">
+              <div className="absolute top-4 right-1/2 w-full h-0.5 bg-stone-200 dark:bg-white/10 -z-10">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: i <= currentIndex ? "100%" : 0 }}
@@ -46,14 +46,14 @@ export function OrderStatusTracker({ status }: { status: OrderStatus }) {
               initial={{ scale: 0.7 }}
               animate={{ scale: 1 }}
               className={`flex h-8 w-8 items-center justify-center rounded-full ${
-                done ? "bg-brand text-white" : "bg-stone-100 text-stone-400"
+                done ? "bg-brand text-white" : "bg-stone-100 dark:bg-white/10 text-stone-400 dark:text-stone-500"
               } ${step.key === status ? "pulse-ring" : ""}`}
             >
               <step.icon size={15} />
             </motion.div>
             <span
               className={`mt-2 text-[11px] text-center font-medium ${
-                done ? "text-brand-dark" : "text-stone-400"
+                done ? "text-brand-dark dark:text-brand-light" : "text-stone-400 dark:text-stone-500"
               }`}
             >
               {t(`orderStatus.${step.key}`)}

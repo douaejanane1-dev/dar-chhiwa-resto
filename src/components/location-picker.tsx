@@ -49,7 +49,7 @@ export function LocationPicker({
   return (
     <div className="relative">
       <div
-        className="h-72 w-full overflow-hidden rounded-2xl border border-stone-200"
+        className="h-72 w-full overflow-hidden rounded-2xl border border-stone-200 dark:border-white/10"
         role="application"
         aria-label={t("checkout.mapHelp")}
       >
@@ -65,11 +65,11 @@ export function LocationPicker({
       <button
         type="button"
         onClick={locateMe}
-        className="absolute top-3 right-3 rtl:right-auto rtl:left-3 z-[400] flex items-center gap-1.5 rounded-full bg-white px-3 py-2 text-xs font-semibold text-brand-dark shadow-lg hover:bg-brand hover:text-white transition-colors"
+        className="absolute top-3 right-3 rtl:right-auto rtl:left-3 z-[400] flex items-center gap-1.5 rounded-full bg-white dark:bg-stone-900 px-3 py-2 text-xs font-semibold text-brand-dark dark:text-brand-light shadow-lg hover:bg-brand hover:text-white dark:hover:text-white transition-colors"
       >
         <MapPin size={14} aria-hidden="true" /> {t("checkout.locateMe")}
       </button>
-      <p className="mt-2 text-xs text-stone-400">
+      <p className="mt-2 text-xs text-stone-400 dark:text-stone-500">
         {t("checkout.mapHelp")} ({position[0].toFixed(4)}, {position[1].toFixed(4)})
       </p>
     </div>

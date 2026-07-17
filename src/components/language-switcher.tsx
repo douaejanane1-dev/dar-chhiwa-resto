@@ -44,7 +44,7 @@ export function LanguageSwitcher({ variant = "light" }: { variant?: "light" | "d
             exit={{ opacity: 0, y: -6, scale: 0.96 }}
             transition={{ duration: 0.15 }}
             role="listbox"
-            className="absolute right-0 rtl:right-auto rtl:left-0 top-full mt-2 w-44 rounded-xl bg-white shadow-xl ring-1 ring-stone-100 overflow-hidden z-50"
+            className="absolute right-0 rtl:right-auto rtl:left-0 top-full mt-2 w-44 rounded-xl bg-white dark:bg-surface shadow-xl ring-1 ring-stone-100 dark:ring-white/10 overflow-hidden z-50"
           >
             {locales.map((l) => (
               <button
@@ -55,7 +55,7 @@ export function LanguageSwitcher({ variant = "light" }: { variant?: "light" | "d
                   setLocale(l);
                   setOpen(false);
                 }}
-                className="flex w-full items-center justify-between gap-2 px-4 py-2.5 text-sm text-stone-700 hover:bg-brand/10 transition-colors"
+                className="flex w-full items-center justify-between gap-2 px-4 py-2.5 text-sm text-stone-700 dark:text-stone-200 hover:bg-brand/10 transition-colors"
               >
                 <span className="flex items-center gap-2">
                   <span aria-hidden="true">{localeFlags[l]}</span> {localeNames[l]}
