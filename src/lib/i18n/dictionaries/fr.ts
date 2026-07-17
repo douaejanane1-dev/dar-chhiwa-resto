@@ -85,6 +85,14 @@ const fr: Dictionary = {
     vegetarian: "Végétarien",
     prepTime: "min de préparation",
   },
+  modal: {
+    ingredients: "Ingrédients",
+    allergens: "Allergènes",
+    calories: "Calories",
+    relatedDishes: "Vous aimerez aussi",
+    quantity: "Quantité",
+    close: "Fermer",
+  },
   cart: {
     title: "Votre Panier",
     empty: "Votre panier est vide. Ajoutez quelque chose de délicieux !",

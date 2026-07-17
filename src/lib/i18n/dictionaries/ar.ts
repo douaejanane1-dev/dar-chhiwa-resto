@@ -85,6 +85,14 @@ const ar: Dictionary = {
     vegetarian: "نباتي",
     prepTime: "د تحضير",
   },
+  modal: {
+    ingredients: "المكونات",
+    allergens: "مسببات الحساسية",
+    calories: "السعرات الحرارية",
+    relatedDishes: "غادي يعجبوك ايضا",
+    quantity: "الكمية",
+    close: "سد",
+  },
   cart: {
     title: "السلة ديالك",
     empty: "السلة ديالك خاوية. زيد شي حاجة بنينة!",

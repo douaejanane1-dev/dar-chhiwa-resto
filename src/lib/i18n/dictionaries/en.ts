@@ -83,6 +83,14 @@ const en = {
     vegetarian: "Vegetarian",
     prepTime: "min prep",
   },
+  modal: {
+    ingredients: "Ingredients",
+    allergens: "Allergens",
+    calories: "Calories",
+    relatedDishes: "You might also like",
+    quantity: "Quantity",
+    close: "Close",
+  },
   cart: {
     title: "Your Cart",
     empty: "Your cart is empty. Add something tasty!",
