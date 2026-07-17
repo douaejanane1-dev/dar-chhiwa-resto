@@ -9,7 +9,7 @@ async function requireAdmin() {
 }
 
 export async function GET() {
-  return NextResponse.json(getCategories());
+  return NextResponse.json(await getCategories());
 }
 
 const schema = z.object({
@@ -25,6 +25,6 @@ export async function POST(req: Request) {
   const body = await req.json();
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "Invalid" }, { status: 400 });
-  const cat = createCategory(parsed.data);
+  const cat = await createCategory(parsed.data);
   return NextResponse.json(cat, { status: 201 });
 }
