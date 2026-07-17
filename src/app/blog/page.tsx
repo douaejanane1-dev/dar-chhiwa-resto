@@ -23,7 +23,7 @@ export default async function BlogIndexPage() {
   const value = cookieStore.get(COOKIE_NAME)?.value;
   const locale = isValidLocale(value) ? value : defaultLocale;
   const dict = await getDictionary(locale);
-  const posts = getPublishedBlogPosts();
+  const posts = await getPublishedBlogPosts();
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
