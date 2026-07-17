@@ -35,6 +35,9 @@ export interface MenuItem {
   spicyLevel: number; // 0-3
   tags: string[];
   prepTime?: number; // minutes
+  ingredients?: string[];
+  allergens?: string[];
+  calories?: number;
 }
 
 export interface OrderItem {
