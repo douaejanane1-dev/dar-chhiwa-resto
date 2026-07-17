@@ -13,8 +13,8 @@ import { parseOpeningHoursRange } from "@/lib/opening-hours";
 import { FAQ_KEYS, FAQ_CONTENT } from "@/lib/faq-content";
 
 export default async function Home() {
-  const settings = getSettings();
-  const items = getMenuItems().filter((i) => i.isFeatured && i.isAvailable);
+  const settings = await getSettings();
+  const items = (await getMenuItems()).filter((i) => i.isFeatured && i.isAvailable);
   const base = getSiteUrl();
 
   const restaurantSchema = {

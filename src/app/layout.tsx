@@ -30,7 +30,7 @@ const poppins = Poppins({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = getSettings();
+  const settings = await getSettings();
   const locale = await getServerLocale();
   const name = settingsName(settings, locale);
   const tagline = settingsTagline(settings, locale);
@@ -88,7 +88,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const settings = getSettings();
+  const settings = await getSettings();
   const locale = await getServerLocale();
   const theme = await getServerTheme();
   const dir = dirForLocale(locale);
