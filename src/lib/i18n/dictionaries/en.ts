@@ -100,6 +100,8 @@ const en = {
     decrease: "Decrease quantity",
     increase: "Increase quantity",
     remove: "Remove item",
+    estimatedDelivery: "Estimated delivery",
+    suggestedForYou: "You might also like",
   },
   checkout: {
     title: "Complete Your Order",

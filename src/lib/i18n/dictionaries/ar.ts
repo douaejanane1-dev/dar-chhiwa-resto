@@ -102,6 +102,8 @@ const ar: Dictionary = {
     decrease: "تقليل الكمية",
     increase: "زيادة الكمية",
     remove: "إزالة المنتج",
+    estimatedDelivery: "مدة التوصيل المتوقعة",
+    suggestedForYou: "غادي يعجبوك ايضا",
   },
   checkout: {
     title: "أكمل طلبك",

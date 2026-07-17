@@ -102,6 +102,8 @@ const fr: Dictionary = {
     decrease: "Diminuer la quantite",
     increase: "Augmenter la quantite",
     remove: "Retirer cet article",
+    estimatedDelivery: "Livraison estimée",
+    suggestedForYou: "Vous aimerez aussi",
   },
   checkout: {
     title: "Finaliser votre commande",
