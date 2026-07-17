@@ -2,7 +2,20 @@ import fs from "fs";
 import path from "path";
 import type { DBShape } from "./types";
 
-const DB_PATH = path.join(process.cwd(), "data", "db.json");
+const SOURCE_DB_PATH = path.join(process.cwd(), "data", "db.json");
+
+// Vercel (and other read-only serverless) deployments only allow writes under
+// /tmp — the deployed source directory itself is read-only. When running
+// there, we write to a /tmp copy instead, seeded from the bundled data on
+// first access so existing menu/settings content isn't lost.
+// NOTE: /tmp is ephemeral (per-instance, wiped on cold start/redeploy) — this
+// keeps the app functional on Vercel but is not durable storage. For a real
+// production restaurant taking real orders, swap this file-based store for a
+// real database (see README: Postgres via Prisma/Drizzle), or deploy to a
+// host with a persistent filesystem (Docker/VPS/Render) instead.
+const DB_PATH = process.env.VERCEL
+  ? path.join("/tmp", "dar-chhiwa-db.json")
+  : SOURCE_DB_PATH;
 
 function defaultDB(): DBShape {
   return {
@@ -76,7 +89,13 @@ function ensureDB() {
     fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
   }
   if (!fs.existsSync(DB_PATH)) {
-    fs.writeFileSync(DB_PATH, JSON.stringify(defaultDB(), null, 2));
+    if (DB_PATH !== SOURCE_DB_PATH && fs.existsSync(SOURCE_DB_PATH)) {
+      // Seed the writable /tmp copy from the real bundled data (menu,
+      // settings, seeded categories...) instead of starting from scratch.
+      fs.copyFileSync(SOURCE_DB_PATH, DB_PATH);
+    } else {
+      fs.writeFileSync(DB_PATH, JSON.stringify(defaultDB(), null, 2));
+    }
   }
 }
 
