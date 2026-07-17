@@ -9,7 +9,7 @@ import { itemName, itemDescription, categoryName } from "@/lib/i18n/localize";
 import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = getSettings();
+  const settings = await getSettings();
   const base = getSiteUrl();
   const title = "Menu";
   const description = `Découvrez le menu complet de ${settings.name} : tajines, grillades, pizzas, salades et desserts marocains, livrés chez vous.`;
@@ -22,9 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function MenuPage() {
-  const categories = getCategories();
-  const items = getMenuItems();
-  const settings = getSettings();
+  const categories = await getCategories();
+  const items = await getMenuItems();
+  const settings = await getSettings();
   const base = getSiteUrl();
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
