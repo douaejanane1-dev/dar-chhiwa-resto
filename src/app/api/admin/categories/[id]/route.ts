@@ -14,7 +14,7 @@ export async function PUT(
   if (!(await requireAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const { id } = await params;
   const body = await req.json();
-  const cat = updateCategory(id, body);
+  const cat = await updateCategory(id, body);
   if (!cat) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(cat);
 }
@@ -25,7 +25,7 @@ export async function DELETE(
 ) {
   if (!(await requireAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const { id } = await params;
-  const ok = deleteCategory(id);
+  const ok = await deleteCategory(id);
   if (!ok) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({ success: true });
 }
