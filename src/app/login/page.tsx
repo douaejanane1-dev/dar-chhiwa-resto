@@ -43,9 +43,9 @@ function LoginForm() {
       className="w-full max-w-sm space-y-5"
     >
       <div>
-        <label htmlFor="login-email" className="text-sm font-semibold text-stone-700">{t("auth.email")}</label>
+        <label htmlFor="login-email" className="text-sm font-semibold text-stone-700 dark:text-stone-200">{t("auth.email")}</label>
         <div className="relative mt-1">
-          <Mail size={16} aria-hidden="true" className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+          <Mail size={16} aria-hidden="true" className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-500" />
           <input
             id="login-email"
             required
@@ -53,15 +53,15 @@ function LoginForm() {
             autoComplete="email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full rounded-xl border border-stone-200 py-3 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
+            className="w-full rounded-xl border border-stone-200 dark:border-white/10 dark:bg-stone-900/40 dark:text-stone-100 dark:placeholder:text-stone-500 py-3 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
             placeholder="email@domain.com"
           />
         </div>
       </div>
       <div>
-        <label htmlFor="login-password" className="text-sm font-semibold text-stone-700">{t("auth.password")}</label>
+        <label htmlFor="login-password" className="text-sm font-semibold text-stone-700 dark:text-stone-200">{t("auth.password")}</label>
         <div className="relative mt-1">
-          <Lock size={16} aria-hidden="true" className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+          <Lock size={16} aria-hidden="true" className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-500" />
           <input
             id="login-password"
             required
@@ -69,7 +69,7 @@ function LoginForm() {
             autoComplete="current-password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="w-full rounded-xl border border-stone-200 py-3 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
+            className="w-full rounded-xl border border-stone-200 dark:border-white/10 dark:bg-stone-900/40 dark:text-stone-100 dark:placeholder:text-stone-500 py-3 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
             placeholder="••••••••"
           />
         </div>
@@ -81,14 +81,14 @@ function LoginForm() {
       >
         <LogIn size={17} aria-hidden="true" /> {loading ? "..." : t("auth.signIn")}
       </button>
-      <p className="text-center text-sm text-stone-500">
+      <p className="text-center text-sm text-stone-500 dark:text-stone-400">
         {t("auth.noAccount")}{" "}
         <Link href="/register" className="font-semibold text-brand hover:underline">
           {t("auth.signUpNow")}
         </Link>
       </p>
-      <div className="rounded-xl bg-stone-50 border border-stone-100 p-3 text-xs text-stone-500">
-        <p className="font-semibold text-stone-600 mb-1">{t("auth.demoAccounts")}</p>
+      <div className="rounded-xl bg-stone-50 dark:bg-white/5 border border-stone-100 dark:border-white/10 p-3 text-xs text-stone-500 dark:text-stone-400">
+        <p className="font-semibold text-stone-600 dark:text-stone-300 mb-1">{t("auth.demoAccounts")}</p>
         Admin: admin@darchhiwa.ma / admin123
         <br />
         Client: client@darchhiwa.ma / client123
@@ -103,8 +103,8 @@ export default function LoginPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="font-display text-3xl font-extrabold text-stone-800">{t("auth.welcomeBack")}</h1>
-          <p className="mt-1 text-sm text-stone-500">{t("auth.signInSubtitle")}</p>
+          <h1 className="font-display text-3xl font-extrabold text-stone-800 dark:text-stone-100">{t("auth.welcomeBack")}</h1>
+          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t("auth.signInSubtitle")}</p>
         </div>
         <Suspense>
           <LoginForm />
