@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const order = getOrderById(id);
+  const order = await getOrderById(id);
   if (!order) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const session = await auth();
@@ -37,7 +37,7 @@ export async function PATCH(
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid status" }, { status: 400 });
   }
-  const order = updateOrderStatus(id, parsed.data.status);
+  const order = await updateOrderStatus(id, parsed.data.status);
   if (!order) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(order);
 }
