@@ -24,12 +24,12 @@ export async function POST(req: Request) {
   }
   const { name, email, phone, password } = parsed.data;
 
-  if (getUserByEmail(email)) {
+  if (await getUserByEmail(email)) {
     return NextResponse.json({ error: "This email is already in use" }, { status: 409 });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
-  const user = createUser({ name, email, phone, passwordHash, role: "customer" });
+  const user = await createUser({ name, email, phone, passwordHash, role: "customer" });
 
   return NextResponse.json({ id: user.id, name: user.name, email: user.email });
 }
