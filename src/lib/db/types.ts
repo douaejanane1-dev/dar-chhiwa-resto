@@ -1,3 +1,10 @@
+// App-facing data types. These intentionally mirror the shape the UI has
+// always consumed (e.g. Order.items as an array, Order.address nested) even
+// though the underlying PostgreSQL schema (prisma/schema.prisma) normalizes
+// orders/order items/address columns into separate, indexed relations. The
+// translation between the two happens in src/lib/db/repo.ts so no component
+// had to change during the JSON-file -> PostgreSQL migration.
+
 export type Role = "admin" | "customer";
 
 export interface User {
@@ -34,10 +41,10 @@ export interface MenuItem {
   isFeatured: boolean;
   spicyLevel: number; // 0-3
   tags: string[];
-  prepTime?: number; // minutes
+  prepTime?: number | null; // minutes
   ingredients?: string[];
   allergens?: string[];
-  calories?: number;
+  calories?: number | null;
 }
 
 export interface OrderItem {
@@ -113,7 +120,6 @@ export interface RestaurantSettings {
   facebook?: string;
 }
 
-
 export interface BlogPost {
   id: string;
   slug: string;
@@ -133,11 +139,44 @@ export interface BlogPost {
   updatedAt: string;
 }
 
-export interface DBShape {
-  users: User[];
-  categories: Category[];
-  menuItems: MenuItem[];
-  orders: Order[];
-  settings: RestaurantSettings;
-  blogPosts: BlogPost[];
+// ---------------------------------------------------------------------------
+// Future-ready (schema + data layer exist; no storefront UI wired up yet)
+// ---------------------------------------------------------------------------
+
+export type ReservationStatus = "pending" | "confirmed" | "cancelled" | "completed";
+
+export interface Reservation {
+  id: string;
+  customerId?: string;
+  customerName: string;
+  customerPhone: string;
+  customerEmail?: string;
+  partySize: number;
+  date: string;
+  status: ReservationStatus;
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Customer {
+  id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  notes?: string;
+  userId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Review {
+  id: string;
+  menuItemId: string;
+  userId?: string;
+  customerName: string;
+  rating: number;
+  comment?: string;
+  published: boolean;
+  createdAt: string;
 }
