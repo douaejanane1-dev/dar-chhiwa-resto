@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -26,6 +26,7 @@ export function CheckoutForm({
   const router = useRouter();
   const { lines, subtotal, clear } = useCart();
   const [loading, setLoading] = useState(false);
+  const submittingRef = useRef(false);
   const [paymentMethod, setPaymentMethod] = useState<"cod" | "card">("cod");
   const [coords, setCoords] = useState({ lat: settings.lat, lng: settings.lng });
   const { t } = useLocale();
@@ -44,10 +45,12 @@ export function CheckoutForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (submittingRef.current) return;
     if (lines.length === 0) {
       toast.error(t("cart.empty"));
       return;
     }
+    submittingRef.current = true;
     setLoading(true);
     try {
       const res = await fetch("/api/orders", {
@@ -105,6 +108,7 @@ export function CheckoutForm({
       toast.success(t("checkout.orderSuccess"));
       router.push(`/order/${data.id}`);
     } finally {
+      submittingRef.current = false;
       setLoading(false);
     }
   }
