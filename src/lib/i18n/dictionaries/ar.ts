@@ -26,6 +26,11 @@ const ar: Dictionary = {
     deliveryFee: "رسوم التوصيل",
     minOrder: "الحد الأدنى للطلب",
     rights: "جميع الحقوق محفوظة.",
+    openNow: "مفتوح الآن",
+    closedNow: "مغلق حاليا",
+    viewMap: "شوف على الخريطة",
+    callNow: "اتصل بنا",
+    orderWhatsapp: "اطلب عبر واتساب",
   },
   hero: {
     badge: "الأول في توصيل الأكل المغربي",
@@ -59,6 +64,11 @@ const ar: Dictionary = {
     addToCart: "زيد للسلة",
     addedToCart: "تزاد للسلة!",
     spicyLevel: "درجة الحرارة",
+    newBadge: "جديد",
+    bestSeller: "الأكثر طلبا",
+    chefPick: "اختيار الشيف",
+    vegetarian: "نباتي",
+    prepTime: "د تحضير",
   },
   cart: {
     title: "السلة ديالك",

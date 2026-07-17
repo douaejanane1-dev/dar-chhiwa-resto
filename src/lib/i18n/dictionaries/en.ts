@@ -24,6 +24,11 @@ const en = {
     deliveryFee: "Delivery fee",
     minOrder: "Minimum order",
     rights: "All rights reserved.",
+    openNow: "Open now",
+    closedNow: "Currently closed",
+    viewMap: "View on map",
+    callNow: "Call now",
+    orderWhatsapp: "Order on WhatsApp",
   },
   hero: {
     badge: "#1 in Moroccan food delivery",
@@ -57,6 +62,11 @@ const en = {
     addToCart: "Add to cart",
     addedToCart: "added to cart!",
     spicyLevel: "Spice level",
+    newBadge: "New",
+    bestSeller: "Best Seller",
+    chefPick: "Chef's Pick",
+    vegetarian: "Vegetarian",
+    prepTime: "min prep",
   },
   cart: {
     title: "Your Cart",

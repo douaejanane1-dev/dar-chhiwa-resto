@@ -26,6 +26,11 @@ const fr: Dictionary = {
     deliveryFee: "Frais de livraison",
     minOrder: "Commande minimum",
     rights: "Tous droits réservés.",
+    openNow: "Ouvert maintenant",
+    closedNow: "Fermé actuellement",
+    viewMap: "Voir sur la carte",
+    callNow: "Appeler",
+    orderWhatsapp: "Commander sur WhatsApp",
   },
   hero: {
     badge: "N°1 de la livraison de cuisine marocaine",
@@ -59,6 +64,11 @@ const fr: Dictionary = {
     addToCart: "Ajouter au panier",
     addedToCart: "ajouté au panier !",
     spicyLevel: "Niveau de piquant",
+    newBadge: "Nouveau",
+    bestSeller: "Meilleure vente",
+    chefPick: "Recommandé par le chef",
+    vegetarian: "Végétarien",
+    prepTime: "min de préparation",
   },
   cart: {
     title: "Votre Panier",
