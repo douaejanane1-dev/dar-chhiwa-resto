@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { WhatsappFloatButton } from "@/components/whatsapp-float-button";
 import { CartDrawer } from "@/components/cart-drawer";
 import { getSettings } from "@/lib/db/repo";
 import { COOKIE_NAME, defaultLocale, dirForLocale, isValidLocale, type Locale } from "@/lib/i18n/config";
@@ -96,12 +97,7 @@ export default async function RootLayout({
   const skipLabel = locale === "ar" ? "الانتقال إلى المحتوى" : locale === "fr" ? "Aller au contenu" : "Skip to content";
 
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      data-scroll-behavior="smooth"
-      className={`h-full antialiased${theme === "dark" ? " dark" : ""}`}
-    >
+    <html lang={locale} dir={dir} className={`h-full antialiased${theme === "dark" ? " dark" : ""}`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <a href="#main-content" className="skip-link">
           {skipLabel}
@@ -112,6 +108,7 @@ export default async function RootLayout({
           <Navbar settings={settings} />
           <main id="main-content" className="flex-1">{children}</main>
           <Footer settings={settings} />
+          <WhatsappFloatButton phone={settings.phone} />
           <CartDrawer />
         </Providers>
       </body>
