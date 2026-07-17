@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Playfair_Display, Poppins } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -12,6 +13,21 @@ import { THEME_COOKIE_NAME, defaultTheme, isValidTheme, type Theme } from "@/lib
 import { settingsName, settingsTagline, settingsDescription } from "@/lib/i18n/localize";
 import { getSiteUrl } from "@/lib/site-url";
 import { StructuredData } from "@/components/structured-data";
+import { resolveAssetUrl } from "@/lib/resolve-url";
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800", "900"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = getSettings();
@@ -21,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = settingsDescription(settings, locale);
   const base = getSiteUrl();
   const title = `${name} | ${tagline}`;
-  const coverUrl = settings.coverImage ? `${base}${settings.coverImage}` : undefined;
+  const coverUrl = resolveAssetUrl(base, settings.coverImage);
 
   return {
     metadataBase: new URL(base),
@@ -83,7 +99,7 @@ export default async function RootLayout({
     "@type": "Organization",
     name: settings.name,
     url: base,
-    logo: `${base}${settings.logo}`,
+    logo: resolveAssetUrl(base, settings.logo),
     sameAs: [settings.instagram, settings.facebook].filter(Boolean),
   };
 
@@ -97,7 +113,7 @@ export default async function RootLayout({
   const skipLabel = locale === "ar" ? "الانتقال إلى المحتوى" : locale === "fr" ? "Aller au contenu" : "Skip to content";
 
   return (
-    <html lang={locale} dir={dir} className={`h-full antialiased${theme === "dark" ? " dark" : ""}`}>
+    <html lang={locale} dir={dir} className={`h-full antialiased ${playfairDisplay.variable} ${poppins.variable}${theme === "dark" ? " dark" : ""}`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <a href="#main-content" className="skip-link">
           {skipLabel}

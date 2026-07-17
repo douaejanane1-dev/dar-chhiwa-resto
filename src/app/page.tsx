@@ -8,6 +8,9 @@ import { FaqSection } from "@/components/faq-section";
 import { NewsletterSection } from "@/components/newsletter-section";
 import { StructuredData } from "@/components/structured-data";
 import { getSiteUrl } from "@/lib/site-url";
+import { resolveAssetUrl } from "@/lib/resolve-url";
+import { parseOpeningHoursRange } from "@/lib/opening-hours";
+import { FAQ_KEYS, FAQ_CONTENT } from "@/lib/faq-content";
 
 export default async function Home() {
   const settings = getSettings();
@@ -18,8 +21,8 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: settings.name,
-    image: `${base}${settings.coverImage}`,
-    logo: `${base}${settings.logo}`,
+    image: resolveAssetUrl(base, settings.coverImage),
+    logo: resolveAssetUrl(base, settings.logo),
     url: base,
     telephone: settings.phone,
     servesCuisine: "Moroccan",
@@ -37,11 +40,47 @@ export default async function Home() {
     },
     servesDelivery: true,
     sameAs: [settings.instagram, settings.facebook].filter(Boolean),
+    hasMenu: `${base}/menu`,
+    ...(() => {
+      const range = parseOpeningHoursRange(settings.openingHours);
+      if (!range) return {};
+      return {
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: range.open,
+          closes: range.close,
+        },
+      };
+    })(),
+  };
+
+  const faqEntries = FAQ_KEYS.map((key) => FAQ_CONTENT.fr[key]).filter(Boolean);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqEntries.map((entry) => ({
+      "@type": "Question",
+      name: entry.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: entry.a,
+      },
+    })),
   };
 
   return (
     <>
       <StructuredData data={restaurantSchema} />
+      <StructuredData data={faqSchema} />
       <Hero settings={settings} />
       <FeaturedSection items={items} />
       <AboutSection settings={settings} />

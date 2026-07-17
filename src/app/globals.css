@@ -40,8 +40,8 @@
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
   --color-border-subtle: var(--border-subtle);
-  --font-sans: "Poppins", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-poppins), "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
 }
 
 html {
