@@ -5,8 +5,8 @@ import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { COOKIE_NAME, defaultLocale, isValidLocale } from "@/lib/i18n/config";
 
 export default async function AdminMenuPage() {
-  const categories = getCategories();
-  const items = getMenuItems();
+  const categories = await getCategories();
+  const items = await getMenuItems();
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
   const locale = isValidLocale(localeValue) ? localeValue : defaultLocale;
