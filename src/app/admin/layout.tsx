@@ -7,7 +7,7 @@ import { COOKIE_NAME, defaultLocale, isValidLocale } from "@/lib/i18n/config";
 import { settingsName } from "@/lib/i18n/localize";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const settings = getSettings();
+  const settings = await getSettings();
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
   const locale = isValidLocale(localeValue) ? localeValue : defaultLocale;

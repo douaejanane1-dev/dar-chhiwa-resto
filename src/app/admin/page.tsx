@@ -6,7 +6,7 @@ import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { COOKIE_NAME, defaultLocale, isValidLocale } from "@/lib/i18n/config";
 
 export default async function AdminDashboard() {
-  const stats = getStats();
+  const stats = await getStats();
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
   const locale = isValidLocale(localeValue) ? localeValue : defaultLocale;
