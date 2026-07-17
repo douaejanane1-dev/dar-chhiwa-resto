@@ -16,10 +16,10 @@ export default function ErrorPage({
 
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 text-center">
-      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-50 text-red-500">
+      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400">
         <AlertTriangle size={36} />
       </div>
-      <h1 className="font-display text-2xl font-extrabold text-stone-800">
+      <h1 className="font-display text-2xl font-extrabold text-stone-800 dark:text-stone-100">
         Un problème est survenu / وقع مشكل / Something went wrong
       </h1>
       <button
