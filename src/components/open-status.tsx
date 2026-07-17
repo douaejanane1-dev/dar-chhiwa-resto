@@ -2,28 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useLocale } from "@/lib/i18n/locale-context";
-
-function parseRange(text: string): { start: number; end: number } | null {
-  const match = text.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
-  if (!match) return null;
-  const [, sh, sm, eh, em] = match;
-  return {
-    start: parseInt(sh, 10) * 60 + parseInt(sm, 10),
-    end: parseInt(eh, 10) * 60 + parseInt(em, 10),
-  };
-}
+import { parseOpeningHoursRange } from "@/lib/opening-hours";
 
 export function OpenStatusBadge({ openingHours }: { openingHours: string }) {
   const { t } = useLocale();
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const range = parseRange(openingHours);
+    const range = parseOpeningHoursRange(openingHours);
     if (!range) return;
     const update = () => {
       const now = new Date();
       const minutes = now.getHours() * 60 + now.getMinutes();
-      setIsOpen(minutes >= range.start && minutes <= range.end);
+      setIsOpen(minutes >= range.startMinutes && minutes <= range.endMinutes);
     };
     update();
     const id = setInterval(update, 60_000);

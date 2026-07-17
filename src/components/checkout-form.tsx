@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { Banknote, CreditCard, Loader2, ShoppingBag } from "lucide-react";
+import { Banknote, Clock, CreditCard, Loader2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
 import { useLocale } from "@/lib/i18n/locale-context";
 import type { RestaurantSettings } from "@/lib/db/types";
@@ -243,6 +243,12 @@ export function CheckoutForm({
           ))}
         </div>
         <div className="mt-5 space-y-2 border-t pt-4 text-sm">
+          <div className="flex items-center justify-between text-xs text-stone-400">
+            <span className="inline-flex items-center gap-1">
+              <Clock size={13} aria-hidden="true" /> {t("cart.estimatedDelivery")}
+            </span>
+            <span className="font-semibold">~30 min</span>
+          </div>
           <div className="flex justify-between text-stone-500">
             <span>{t("cart.subtotal")}</span>
             <span>{sub} MAD</span>

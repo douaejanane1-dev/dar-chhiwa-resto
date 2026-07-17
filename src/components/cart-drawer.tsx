@@ -1,15 +1,37 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { Clock, Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
 import { useLocale } from "@/lib/i18n/locale-context";
+import { itemName } from "@/lib/i18n/localize";
+import type { MenuItem } from "@/lib/db/types";
 
 export function CartDrawer() {
-  const { isOpen, close, lines, setQty, remove, subtotal } = useCart();
-  const { t } = useLocale();
+  const { isOpen, close, lines, setQty, remove, subtotal, add } = useCart();
+  const { t, locale } = useLocale();
+  const [suggestions, setSuggestions] = useState<MenuItem[]>([]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    let cancelled = false;
+    fetch("/api/menu")
+      .then((r) => r.json())
+      .then((data: { items: MenuItem[] }) => {
+        if (cancelled) return;
+        const inCart = new Set(lines.map((l) => l.menuItemId));
+        const pool = data.items.filter((i) => i.isAvailable && !inCart.has(i.id));
+        setSuggestions(pool.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0)).slice(0, 3));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -105,9 +127,47 @@ export function CartDrawer() {
                       </motion.div>
                     ))}
                   </AnimatePresence>
+
+                  {suggestions.length > 0 && (
+                    <div className="pt-2">
+                      <h3 className="text-xs font-bold uppercase tracking-wide text-stone-400 dark:text-stone-500 mb-2">
+                        {t("cart.suggestedForYou")}
+                      </h3>
+                      <div className="grid grid-cols-3 gap-2">
+                        {suggestions.map((s) => (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onClick={() => add({ menuItemId: s.id, name: itemName(s, locale), price: s.price, image: s.image })}
+                            className="text-left rtl:text-right group"
+                          >
+                            <div className="relative h-14 w-full overflow-hidden rounded-lg bg-stone-100 dark:bg-stone-800">
+                              <Image
+                                src={s.image}
+                                alt={itemName(s, locale)}
+                                fill
+                                unoptimized
+                                className="object-cover transition-transform group-hover:scale-110"
+                              />
+                            </div>
+                            <p className="mt-1 text-[11px] font-medium text-stone-600 dark:text-stone-300 line-clamp-1">
+                              {itemName(s, locale)}
+                            </p>
+                            <p className="text-[11px] font-bold text-brand-dark">{s.price} MAD</p>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="border-t border-stone-100 dark:border-white/10 px-5 py-4 space-y-3">
+                  <div className="flex items-center justify-between text-xs text-stone-400 dark:text-stone-500">
+                    <span className="inline-flex items-center gap-1">
+                      <Clock size={13} aria-hidden="true" /> {t("cart.estimatedDelivery")}
+                    </span>
+                    <span className="font-semibold">~30 min</span>
+                  </div>
                   <div className="flex justify-between text-sm text-stone-500 dark:text-stone-400">
                     <span>{t("cart.subtotal")}</span>
                     <span className="font-semibold text-stone-800 dark:text-stone-100">{subtotal()} MAD</span>
