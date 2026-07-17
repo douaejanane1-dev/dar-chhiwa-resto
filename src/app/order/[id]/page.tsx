@@ -16,7 +16,7 @@ export default async function OrderConfirmationPage({
 }) {
   const { id } = await params;
   const { session_id } = await searchParams;
-  let order = getOrderById(id);
+  let order = await getOrderById(id);
   if (!order) notFound();
 
   // If returning from Stripe Checkout, verify the session server-side and
@@ -29,7 +29,7 @@ export default async function OrderConfirmationPage({
       try {
         const session = await stripe.checkout.sessions.retrieve(session_id);
         if (session.payment_status === "paid" && session.metadata?.orderId === order.id) {
-          const updated = updateOrderPaymentStatus(order.id, "paid", session_id);
+          const updated = await updateOrderPaymentStatus(order.id, "paid", session_id);
           if (updated) order = updated;
         }
       } catch {
