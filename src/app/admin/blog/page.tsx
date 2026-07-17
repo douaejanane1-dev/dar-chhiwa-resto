@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { COOKIE_NAME, defaultLocale, isValidLocale } from "@/lib/i18n/config";
 
 export default async function AdminBlogPage() {
-  const posts = getBlogPosts();
+  const posts = await getBlogPosts();
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
   const locale = isValidLocale(localeValue) ? localeValue : defaultLocale;
