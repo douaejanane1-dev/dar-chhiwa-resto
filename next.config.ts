@@ -32,17 +32,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  // react-leaflet's MapContainer doesn't clean up its Leaflet instance on
-  // Strict Mode's dev-only double-mount, causing "Map container is already
-  // initialized" on /checkout. Disabling Strict Mode has no effect on
-  // production builds (the double-invoke behavior never runs there).
-  reactStrictMode: false,
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "picsum.photos" },
-      { protocol: "https", hostname: "fastly.picsum.photos" },
-    ],
-  },
+  // Note: menu/blog/about images are rendered with <Image unoptimized> because
+  // their URLs are admin-editable free-text fields (any external host is possible),
+  // so Next's remote-pattern allowlist for the built-in optimizer doesn't apply here.
   async headers() {
     return [
       {
