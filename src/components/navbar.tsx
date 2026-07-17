@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Menu, X, UserRound, LogOut, Sun, Moon } from "lucide-react";
@@ -14,6 +15,7 @@ import type { RestaurantSettings } from "@/lib/db/types";
 
 export function Navbar({ settings }: { settings: RestaurantSettings }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const { data: session } = useSession();
   const openCart = useCart((s) => s.open);
   const count = useCart((s) => s.count());
@@ -46,15 +48,23 @@ export function Navbar({ settings }: { settings: RestaurantSettings }) {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="relative text-sm font-medium text-stone-700 dark:text-stone-200 hover:text-brand transition-colors after:absolute after:-bottom-1 after:left-0 rtl:after:left-auto rtl:after:right-0 after:h-[2px] after:w-0 after:bg-brand after:transition-all hover:after:w-full"
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const isActive = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href.split("#")[0]) && l.href !== "/#about" && l.href !== "/#contact";
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative text-sm font-medium transition-colors after:absolute after:-bottom-1 after:left-0 rtl:after:left-auto rtl:after:right-0 after:h-[2px] after:bg-brand after:transition-all ${
+                    isActive
+                      ? "text-brand after:w-full"
+                      : "text-stone-700 dark:text-stone-200 hover:text-brand after:w-0 hover:after:w-full"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
