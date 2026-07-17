@@ -3,6 +3,9 @@ import { Hero } from "@/components/hero";
 import { FeaturedSection } from "@/components/featured-section";
 import { AboutSection } from "@/components/about-section";
 import { CtaSection } from "@/components/cta-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { FaqSection } from "@/components/faq-section";
+import { NewsletterSection } from "@/components/newsletter-section";
 import { StructuredData } from "@/components/structured-data";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -42,7 +45,10 @@ export default async function Home() {
       <Hero settings={settings} />
       <FeaturedSection items={items} />
       <AboutSection settings={settings} />
+      <TestimonialsSection />
+      <FaqSection />
       <CtaSection />
+      <NewsletterSection />
     </>
   );
 }
