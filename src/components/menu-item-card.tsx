@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Flame, Plus, Clock, Leaf, Heart, Star } from "lucide-react";
@@ -9,9 +10,20 @@ import { useFavorites } from "@/lib/favorites-store";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { itemName, itemDescription } from "@/lib/i18n/localize";
 import { getMenuItemRating, getMenuItemReviewCount } from "@/lib/menu-rating";
+import { MenuItemModal } from "@/components/menu-item-modal";
 import type { MenuItem } from "@/lib/db/types";
 
-export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: number }) {
+export function MenuItemCard({
+  item,
+  index = 0,
+  allItems = [],
+}: {
+  item: MenuItem;
+  index?: number;
+  allItems?: MenuItem[];
+}) {
+  const [activeItem, setActiveItem] = useState<MenuItem | null>(null);
+  const [qty, setQty] = useState(1);
   const add = useCart((s) => s.add);
   const isFavorite = useFavorites((s) => s.isFavorite(item.id));
   const toggleFavorite = useFavorites((s) => s.toggle);
@@ -26,13 +38,26 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
   const reviewCount = getMenuItemReviewCount(item.id);
 
   return (
+    <>
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.45, delay: (index % 6) * 0.05 }}
       whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-2xl bg-white dark:bg-surface shadow-sm ring-1 ring-stone-100 dark:ring-white/10 hover:shadow-xl hover:shadow-brand/10 transition-shadow"
+      onClick={() => {
+        setQty(1);
+        setActiveItem(item);
+      }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          setQty(1);
+          setActiveItem(item);
+        }
+      }}
+      className="group relative overflow-hidden rounded-2xl bg-white dark:bg-surface shadow-sm ring-1 ring-stone-100 dark:ring-white/10 hover:shadow-xl hover:shadow-brand/10 transition-shadow cursor-pointer"
     >
       <div className="relative h-44 w-full overflow-hidden bg-stone-100 dark:bg-stone-800">
         <Image
@@ -66,7 +91,10 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
           <motion.button
             type="button"
             whileTap={{ scale: 0.8 }}
-            onClick={() => toggleFavorite(item.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFavorite(item.id);
+            }}
             aria-label={isFavorite ? t("menu.removeFavorite") : t("menu.addFavorite")}
             aria-pressed={isFavorite}
             className="flex h-7 w-7 items-center justify-center rounded-full bg-white/90 dark:bg-stone-900/90 shadow backdrop-blur-sm transition-colors hover:bg-white"
@@ -139,7 +167,8 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
             whileTap={{ scale: 0.85 }}
             disabled={!item.isAvailable}
             aria-label={`${t("menu.addToCart")} ${name}`}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               add({ menuItemId: item.id, name, price: item.price, image: item.image });
               toast.success(`${name} ${t("menu.addedToCart")}`);
             }}
@@ -150,5 +179,20 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
         </div>
       </div>
     </motion.div>
+
+    {activeItem && (
+      <MenuItemModal
+        item={activeItem}
+        related={allItems.filter((i) => i.categoryId === activeItem.categoryId && i.id !== activeItem.id).slice(0, 3)}
+        qty={qty}
+        onQtyChange={setQty}
+        onClose={() => setActiveItem(null)}
+        onSelectRelated={(r) => {
+          setQty(1);
+          setActiveItem(r);
+        }}
+      />
+    )}
+    </>
   );
 }

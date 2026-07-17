@@ -74,7 +74,7 @@ export function MenuBrowser({
           <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             <AnimatePresence mode="popLayout">
               {filtered.map((item, i) => (
-                <MenuItemCard key={item.id} item={item} index={i} />
+                <MenuItemCard key={item.id} item={item} index={i} allItems={items} />
               ))}
             </AnimatePresence>
           </motion.div>
