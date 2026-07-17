@@ -8,7 +8,7 @@ import { COOKIE_NAME, defaultLocale, isValidLocale } from "@/lib/i18n/config";
 export const metadata = { title: "Checkout" };
 
 export default async function CheckoutPage() {
-  const settings = getSettings();
+  const settings = await getSettings();
   const session = await auth();
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
