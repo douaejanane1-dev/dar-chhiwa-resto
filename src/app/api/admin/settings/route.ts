@@ -7,7 +7,7 @@ export async function GET() {
   if (session?.user?.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
-  return NextResponse.json(getSettings());
+  return NextResponse.json(await getSettings());
 }
 
 export async function PUT(req: Request) {
@@ -16,6 +16,6 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
   const body = await req.json();
-  const settings = updateSettings(body);
+  const settings = await updateSettings(body);
   return NextResponse.json(settings);
 }
