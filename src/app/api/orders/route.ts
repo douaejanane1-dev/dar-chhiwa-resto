@@ -41,7 +41,7 @@ export async function GET() {
 export async function POST(req: Request) {
   const session = await auth();
   const rlKey = session?.user?.id ? `order:user:${session.user.id}` : `order:ip:${getClientIp(req)}`;
-  const { success } = rateLimit(rlKey, { limit: 10, windowMs: 60_000 });
+  const { success } = rateLimit(rlKey, { limit: 20, windowMs: 60_000 });
   if (!success) {
     return NextResponse.json({ error: "Too many orders placed. Please slow down." }, { status: 429 });
   }
