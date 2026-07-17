@@ -9,7 +9,7 @@ async function requireAdmin() {
 }
 
 export async function GET() {
-  return NextResponse.json(getMenuItems());
+  return NextResponse.json(await getMenuItems());
 }
 
 const schema = z.object({
@@ -33,6 +33,6 @@ export async function POST(req: Request) {
   const body = await req.json();
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "Invalid", details: parsed.error.flatten() }, { status: 400 });
-  const item = createMenuItem(parsed.data);
+  const item = await createMenuItem(parsed.data);
   return NextResponse.json(item, { status: 201 });
 }
