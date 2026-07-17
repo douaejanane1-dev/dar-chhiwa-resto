@@ -46,8 +46,8 @@ export default function RegisterPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="font-display text-3xl font-extrabold text-stone-800">{t("auth.createAccount")}</h1>
-          <p className="mt-1 text-sm text-stone-500">{t("auth.createAccountSubtitle")}</p>
+          <h1 className="font-display text-3xl font-extrabold text-stone-800 dark:text-stone-100">{t("auth.createAccount")}</h1>
+          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t("auth.createAccountSubtitle")}</p>
         </div>
         <motion.form
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +67,7 @@ export default function RegisterPage() {
           >
             <UserPlus size={17} aria-hidden="true" /> {loading ? "..." : t("auth.createAccount")}
           </button>
-          <p className="text-center text-sm text-stone-500">
+          <p className="text-center text-sm text-stone-500 dark:text-stone-400">
             {t("auth.haveAccount")}{" "}
             <Link href="/login" className="font-semibold text-brand hover:underline">
               {t("auth.signIn")}
@@ -102,9 +102,9 @@ function Field({
     type === "password" ? "new-password" : type === "email" ? "email" : type === "tel" ? "tel" : "off";
   return (
     <div>
-      <label htmlFor={id} className="text-sm font-semibold text-stone-700">{label}</label>
+      <label htmlFor={id} className="text-sm font-semibold text-stone-700 dark:text-stone-200">{label}</label>
       <div className="relative mt-1">
-        <Icon size={16} aria-hidden="true" className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+        <Icon size={16} aria-hidden="true" className="absolute left-3.5 rtl:left-auto rtl:right-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-500" />
         <input
           id={id}
           required={!optional}
@@ -113,7 +113,7 @@ function Field({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-stone-200 py-3 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
+          className="w-full rounded-xl border border-stone-200 dark:border-white/10 dark:bg-stone-900/40 dark:text-stone-100 dark:placeholder:text-stone-500 py-3 pl-10 pr-4 rtl:pl-4 rtl:pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-brand/40"
         />
       </div>
     </div>
