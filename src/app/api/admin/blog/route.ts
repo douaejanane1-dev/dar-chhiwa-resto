@@ -10,7 +10,7 @@ async function requireAdmin() {
 
 export async function GET() {
   if (!(await requireAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  return NextResponse.json(getBlogPosts());
+  return NextResponse.json(await getBlogPosts());
 }
 
 const schema = z.object({
@@ -36,6 +36,6 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid data", details: parsed.error.flatten() }, { status: 400 });
   }
-  const post = createBlogPost(parsed.data);
+  const post = await createBlogPost(parsed.data);
   return NextResponse.json(post, { status: 201 });
 }
