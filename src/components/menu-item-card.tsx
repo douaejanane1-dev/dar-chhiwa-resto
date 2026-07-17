@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Flame, Plus } from "lucide-react";
+import { Flame, Plus, Clock, Leaf } from "lucide-react";
 import toast from "react-hot-toast";
 import { useCart } from "@/lib/cart-store";
 import { useLocale } from "@/lib/i18n/locale-context";
@@ -14,6 +14,10 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
   const { t, locale } = useLocale();
   const name = itemName(item, locale);
   const description = itemDescription(item, locale);
+  const isVegetarian = item.tags.includes("vegetarien");
+  const isNew = item.tags.includes("nouveau");
+  const isChefPick = item.tags.includes("chef");
+  const isBestSeller = item.tags.includes("populaire");
 
   return (
     <motion.div
@@ -24,19 +28,44 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
       whileHover={{ y: -6 }}
       className="group relative overflow-hidden rounded-2xl bg-white dark:bg-surface shadow-sm ring-1 ring-stone-100 dark:ring-white/10 hover:shadow-xl hover:shadow-brand/10 transition-shadow"
     >
-      <div className="relative h-44 w-full overflow-hidden">
+      <div className="relative h-44 w-full overflow-hidden bg-stone-100 dark:bg-stone-800">
         <Image
           src={item.image}
           alt={name}
           fill
           unoptimized
+          loading="lazy"
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        {item.isFeatured && (
-          <span className="absolute top-3 left-3 rtl:left-auto rtl:right-3 rounded-full bg-gold px-2.5 py-1 text-[11px] font-bold text-stone-900 shadow">
-            {t("menu.featured")}
+
+        <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 flex flex-col gap-1.5 items-start rtl:items-end">
+          {isChefPick && (
+            <span className="rounded-full bg-gold px-2.5 py-1 text-[11px] font-bold text-stone-900 shadow">
+              {t("menu.chefPick")}
+            </span>
+          )}
+          {!isChefPick && isBestSeller && (
+            <span className="rounded-full bg-brand px-2.5 py-1 text-[11px] font-bold text-white shadow">
+              {t("menu.bestSeller")}
+            </span>
+          )}
+          {isNew && (
+            <span className="rounded-full bg-blue-500 px-2.5 py-1 text-[11px] font-bold text-white shadow">
+              {t("menu.newBadge")}
+            </span>
+          )}
+        </div>
+
+        {isVegetarian && (
+          <span
+            className="absolute top-3 right-3 rtl:right-auto rtl:left-3 flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-white shadow"
+            title={t("menu.vegetarian")}
+            aria-label={t("menu.vegetarian")}
+          >
+            <Leaf size={14} aria-hidden="true" />
           </span>
         )}
+
         {!item.isAvailable && (
           <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-sm font-semibold text-center px-2">
             {t("menu.unavailable")}
@@ -63,6 +92,15 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
           )}
         </div>
         <p className="mt-1 text-xs text-stone-500 dark:text-stone-400 line-clamp-2">{description}</p>
+
+        {item.prepTime ? (
+          <div className="mt-2 flex items-center gap-1 text-[11px] text-stone-400 dark:text-stone-500">
+            <Clock size={12} aria-hidden="true" />
+            <span>
+              ~{item.prepTime} {t("menu.prepTime")}
+            </span>
+          </div>
+        ) : null}
 
         <div className="mt-3 flex items-center justify-between">
           <span className="font-display text-lg font-bold text-brand-dark">

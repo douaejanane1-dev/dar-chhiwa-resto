@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, MapPin, Phone, Clock } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { OpenStatusBadge } from "@/components/open-status";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { settingsName, settingsDescription } from "@/lib/i18n/localize";
 import type { RestaurantSettings } from "@/lib/db/types";
@@ -58,15 +59,38 @@ export function Footer({ settings }: { settings: RestaurantSettings }) {
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-2">
               <MapPin size={16} className="mt-0.5 text-brand-light shrink-0" />
-              {settings.address}, {settings.city}
+              <a
+                href={`https://www.google.com/maps?q=${settings.lat},${settings.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-light transition-colors underline-offset-2 hover:underline"
+              >
+                {settings.address}, {settings.city} · {t("footer.viewMap")}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone size={16} className="text-brand-light shrink-0" />
-              {settings.phone}
+              <a href={`tel:${settings.phone.replace(/\s/g, "")}`} className="hover:text-brand-light transition-colors">
+                {settings.phone}
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <MessageCircle size={16} className="text-brand-light shrink-0" />
+              <a
+                href={`https://wa.me/${settings.phone.replace(/[^\d]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-light transition-colors"
+              >
+                {t("footer.orderWhatsapp")}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Clock size={16} className="text-brand-light shrink-0" />
               {settings.openingHours}
+            </li>
+            <li>
+              <OpenStatusBadge openingHours={settings.openingHours} />
             </li>
           </ul>
         </div>
@@ -79,6 +103,15 @@ export function Footer({ settings }: { settings: RestaurantSettings }) {
             {t("footer.minOrder")}: {settings.minOrder} {settings.currency}
           </p>
         </div>
+      </div>
+      <div className="border-t border-stone-800">
+        <iframe
+          title="map"
+          src={`https://www.google.com/maps?q=${settings.lat},${settings.lng}&output=embed`}
+          className="w-full h-56 grayscale-[40%] opacity-90"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </div>
       <div className="border-t border-stone-800 py-5 text-center text-xs text-stone-500">
         © {new Date().getFullYear()} {name}. {t("footer.rights")}
