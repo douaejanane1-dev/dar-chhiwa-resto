@@ -34,6 +34,7 @@ export interface MenuItem {
   isFeatured: boolean;
   spicyLevel: number; // 0-3
   tags: string[];
+  prepTime?: number; // minutes
 }
 
 export interface OrderItem {
