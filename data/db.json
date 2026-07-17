@@ -94,7 +94,18 @@
       "tags": [
         "populaire"
       ],
-      "prepTime": 25
+      "prepTime": 25,
+      "ingredients": [
+        "Bœuf haché épicé",
+        "Œufs",
+        "Tomates",
+        "Persil",
+        "Épices marocaines"
+      ],
+      "allergens": [
+        "Œufs"
+      ],
+      "calories": 480
     },
     {
       "id": "9c8225e5-b6d6-48e6-8501-23cf48c941a1",
@@ -113,7 +124,16 @@
       "tags": [
         "chef"
       ],
-      "prepTime": 30
+      "prepTime": 30,
+      "ingredients": [
+        "Poulet fermier",
+        "Olives vertes",
+        "Citron confit",
+        "Oignons",
+        "Coriandre"
+      ],
+      "allergens": [],
+      "calories": 420
     },
     {
       "id": "f94fe688-5a75-4c83-9b5f-794753e27aa5",
@@ -130,7 +150,18 @@
       "isFeatured": false,
       "spicyLevel": 0,
       "tags": [],
-      "prepTime": 35
+      "prepTime": 35,
+      "ingredients": [
+        "Veau",
+        "Pruneaux",
+        "Amandes",
+        "Cannelle",
+        "Miel"
+      ],
+      "allergens": [
+        "Fruits à coque"
+      ],
+      "calories": 510
     },
     {
       "id": "fbe45f2c-f44a-42b9-bd7f-9540a5119f6f",
@@ -149,7 +180,15 @@
       "tags": [
         "populaire"
       ],
-      "prepTime": 20
+      "prepTime": 20,
+      "ingredients": [
+        "Bœuf mariné",
+        "Poivrons",
+        "Épices",
+        "Huile d'olive"
+      ],
+      "allergens": [],
+      "calories": 390
     },
     {
       "id": "fa3e9e6a-e7a4-4726-a07f-df177c7be4e8",
@@ -166,7 +205,15 @@
       "isFeatured": false,
       "spicyLevel": 2,
       "tags": [],
-      "prepTime": 18
+      "prepTime": 18,
+      "ingredients": [
+        "Bœuf haché",
+        "Persil",
+        "Cumin",
+        "Oignon"
+      ],
+      "allergens": [],
+      "calories": 350
     },
     {
       "id": "7a6dbb4c-2295-4ea8-8e84-35263b4eb3f7",
@@ -183,7 +230,15 @@
       "isFeatured": false,
       "spicyLevel": 0,
       "tags": [],
-      "prepTime": 25
+      "prepTime": 25,
+      "ingredients": [
+        "Poulet fermier",
+        "Chermoula",
+        "Citron",
+        "Ail"
+      ],
+      "allergens": [],
+      "calories": 320
     },
     {
       "id": "ee05bcea-c752-408d-aeae-2dc0bab6cd61",
@@ -202,7 +257,17 @@
       "tags": [
         "populaire"
       ],
-      "prepTime": 10
+      "prepTime": 10,
+      "ingredients": [
+        "Merguez grillée",
+        "Pain",
+        "Salade fraîche",
+        "Sauce maison"
+      ],
+      "allergens": [
+        "Gluten"
+      ],
+      "calories": 460
     },
     {
       "id": "d4309c21-e828-4d16-b178-fdaa1f399a30",
@@ -219,7 +284,18 @@
       "isFeatured": false,
       "spicyLevel": 1,
       "tags": [],
-      "prepTime": 10
+      "prepTime": 10,
+      "ingredients": [
+        "Kefta",
+        "Fromage fondu",
+        "Pain",
+        "Salade marinée"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose"
+      ],
+      "calories": 480
     },
     {
       "id": "b9800473-96d4-44b3-ab58-81770688ab5c",
@@ -239,7 +315,18 @@
         "nouveau",
         "populaire"
       ],
-      "prepTime": 12
+      "prepTime": 12,
+      "ingredients": [
+        "Poulet",
+        "Frites",
+        "Fromage fondu",
+        "Sauce algérienne"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose"
+      ],
+      "calories": 520
     },
     {
       "id": "46f3ba6b-49b8-4a6b-b526-83c2681ee023",
@@ -258,7 +345,18 @@
       "tags": [
         "vegetarien"
       ],
-      "prepTime": 15
+      "prepTime": 15,
+      "ingredients": [
+        "Pâte à pizza",
+        "Sauce tomate",
+        "Mozzarella",
+        "Basilic frais"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose"
+      ],
+      "calories": 620
     },
     {
       "id": "bbb52e9d-16c7-467f-8b8e-046febef9038",
@@ -278,7 +376,19 @@
         "chef",
         "vegetarien"
       ],
-      "prepTime": 16
+      "prepTime": 16,
+      "ingredients": [
+        "Pâte à pizza",
+        "Mozzarella",
+        "Chèvre",
+        "Gorgonzola",
+        "Parmesan"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose"
+      ],
+      "calories": 700
     },
     {
       "id": "c1e7e90a-784f-4e78-b385-a48a43cd354f",
@@ -297,7 +407,19 @@
       "tags": [
         "nouveau"
       ],
-      "prepTime": 18
+      "prepTime": 18,
+      "ingredients": [
+        "Pâte à pizza",
+        "Crevettes",
+        "Calamars",
+        "Sauce tomate légère"
+      ],
+      "allergens": [
+        "Gluten",
+        "Crustacés",
+        "Mollusques"
+      ],
+      "calories": 610
     },
     {
       "id": "018d6ae2-d76b-4838-9326-774d65a63df8",
@@ -314,7 +436,20 @@
       "isFeatured": false,
       "spicyLevel": 0,
       "tags": [],
-      "prepTime": 8
+      "prepTime": 8,
+      "ingredients": [
+        "Laitue romaine",
+        "Poulet grillé",
+        "Parmesan",
+        "Croûtons",
+        "Sauce César"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose",
+        "Œufs"
+      ],
+      "calories": 380
     },
     {
       "id": "d9e4e08e-a20a-49fc-bb92-d237d682c2ae",
@@ -333,7 +468,16 @@
       "tags": [
         "vegetarien"
       ],
-      "prepTime": 7
+      "prepTime": 7,
+      "ingredients": [
+        "Tomates",
+        "Concombre",
+        "Oignons",
+        "Persil",
+        "Huile d'olive"
+      ],
+      "allergens": [],
+      "calories": 150
     },
     {
       "id": "d3c08f0d-7f1b-4963-b375-bce80bcd01bd",
@@ -352,7 +496,14 @@
       "tags": [
         "vegetarien"
       ],
-      "prepTime": 1
+      "prepTime": 1,
+      "ingredients": [
+        "Eau gazéifiée",
+        "Sucre",
+        "Arômes"
+      ],
+      "allergens": [],
+      "calories": 140
     },
     {
       "id": "a3032d93-c989-41ff-a7cf-9451817ba413",
@@ -371,7 +522,12 @@
       "tags": [
         "vegetarien"
       ],
-      "prepTime": 5
+      "prepTime": 5,
+      "ingredients": [
+        "Oranges fraîches pressées"
+      ],
+      "allergens": [],
+      "calories": 110
     },
     {
       "id": "f206375b-9071-4421-a35a-a79cad929c73",
@@ -391,7 +547,14 @@
         "populaire",
         "vegetarien"
       ],
-      "prepTime": 5
+      "prepTime": 5,
+      "ingredients": [
+        "Thé vert",
+        "Menthe fraîche",
+        "Sucre"
+      ],
+      "allergens": [],
+      "calories": 90
     },
     {
       "id": "da7158bc-0a12-4cb0-99c5-48c3145ab83d",
@@ -410,7 +573,18 @@
       "tags": [
         "vegetarien"
       ],
-      "prepTime": 10
+      "prepTime": 10,
+      "ingredients": [
+        "Farine",
+        "Semoule",
+        "Beurre",
+        "Miel"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose"
+      ],
+      "calories": 430
     },
     {
       "id": "ed3b4add-fab8-4dbc-85b4-d816f95583e6",
@@ -429,7 +603,19 @@
       "tags": [
         "vegetarien"
       ],
-      "prepTime": 3
+      "prepTime": 3,
+      "ingredients": [
+        "Farine",
+        "Sésame",
+        "Miel",
+        "Amandes",
+        "Épices"
+      ],
+      "allergens": [
+        "Gluten",
+        "Fruits à coque"
+      ],
+      "calories": 340
     },
     {
       "id": "3dc944f4-39ad-437b-9d2e-92474bfcf9fb",
@@ -449,7 +635,20 @@
         "chef",
         "vegetarien"
       ],
-      "prepTime": 12
+      "prepTime": 12,
+      "ingredients": [
+        "Chocolat noir",
+        "Beurre",
+        "Œufs",
+        "Sucre",
+        "Glace vanille"
+      ],
+      "allergens": [
+        "Gluten",
+        "Lactose",
+        "Œufs"
+      ],
+      "calories": 480
     }
   ],
   "orders": [],
@@ -464,7 +663,7 @@
     "descriptionAr": "مطبخ مغربي أصيل، طبخ يومي بمكونات طازجة ووصفات عائلية. توصيل سريع لباب الدار.",
     "descriptionEn": "Authentic Moroccan cuisine, cooked daily with fresh ingredients and family recipes. Fast delivery to your door.",
     "logo": "",
-    "coverImage": "https://picsum.photos/seed/resto-hero/600/450",
+    "coverImage": "https://images.unsplash.com/photo-1570135460237-510ca82c6781?w=1000&h=1200&fit=crop&q=80&auto=format",
     "phone": "+212 6 00 00 00 00",
     "email": "contact@darchhiwa.ma",
     "address": "Zenkat Al Massira, Hay Al Farah",
