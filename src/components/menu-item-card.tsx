@@ -2,15 +2,19 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Flame, Plus, Clock, Leaf } from "lucide-react";
+import { Flame, Plus, Clock, Leaf, Heart, Star } from "lucide-react";
 import toast from "react-hot-toast";
 import { useCart } from "@/lib/cart-store";
+import { useFavorites } from "@/lib/favorites-store";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { itemName, itemDescription } from "@/lib/i18n/localize";
+import { getMenuItemRating, getMenuItemReviewCount } from "@/lib/menu-rating";
 import type { MenuItem } from "@/lib/db/types";
 
 export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: number }) {
   const add = useCart((s) => s.add);
+  const isFavorite = useFavorites((s) => s.isFavorite(item.id));
+  const toggleFavorite = useFavorites((s) => s.toggle);
   const { t, locale } = useLocale();
   const name = itemName(item, locale);
   const description = itemDescription(item, locale);
@@ -18,6 +22,8 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
   const isNew = item.tags.includes("nouveau");
   const isChefPick = item.tags.includes("chef");
   const isBestSeller = item.tags.includes("populaire");
+  const rating = getMenuItemRating(item.id);
+  const reviewCount = getMenuItemReviewCount(item.id);
 
   return (
     <motion.div
@@ -56,15 +62,31 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
           )}
         </div>
 
-        {isVegetarian && (
-          <span
-            className="absolute top-3 right-3 rtl:right-auto rtl:left-3 flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-white shadow"
-            title={t("menu.vegetarian")}
-            aria-label={t("menu.vegetarian")}
+        <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3 flex flex-col gap-1.5 items-end rtl:items-start">
+          <motion.button
+            type="button"
+            whileTap={{ scale: 0.8 }}
+            onClick={() => toggleFavorite(item.id)}
+            aria-label={isFavorite ? t("menu.removeFavorite") : t("menu.addFavorite")}
+            aria-pressed={isFavorite}
+            className="flex h-7 w-7 items-center justify-center rounded-full bg-white/90 dark:bg-stone-900/90 shadow backdrop-blur-sm transition-colors hover:bg-white"
           >
-            <Leaf size={14} aria-hidden="true" />
-          </span>
-        )}
+            <Heart
+              size={14}
+              aria-hidden="true"
+              className={isFavorite ? "fill-brand text-brand" : "text-stone-500"}
+            />
+          </motion.button>
+          {isVegetarian && (
+            <span
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-white shadow"
+              title={t("menu.vegetarian")}
+              aria-label={t("menu.vegetarian")}
+            >
+              <Leaf size={14} aria-hidden="true" />
+            </span>
+          )}
+        </div>
 
         {!item.isAvailable && (
           <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-sm font-semibold text-center px-2">
@@ -93,14 +115,21 @@ export function MenuItemCard({ item, index = 0 }: { item: MenuItem; index?: numb
         </div>
         <p className="mt-1 text-xs text-stone-500 dark:text-stone-400 line-clamp-2">{description}</p>
 
-        {item.prepTime ? (
-          <div className="mt-2 flex items-center gap-1 text-[11px] text-stone-400 dark:text-stone-500">
-            <Clock size={12} aria-hidden="true" />
-            <span>
-              ~{item.prepTime} {t("menu.prepTime")}
-            </span>
+        <div className="mt-2 flex items-center gap-3 flex-wrap text-[11px] text-stone-400 dark:text-stone-500">
+          <div className="flex items-center gap-1" role="img" aria-label={`${rating}/5`}>
+            <Star size={12} className="fill-gold text-gold" aria-hidden="true" />
+            <span className="font-semibold text-stone-600 dark:text-stone-300">{rating}</span>
+            <span>({reviewCount} {t("menu.reviews")})</span>
           </div>
-        ) : null}
+          {item.prepTime ? (
+            <div className="flex items-center gap-1">
+              <Clock size={12} aria-hidden="true" />
+              <span>
+                ~{item.prepTime} {t("menu.prepTime")}
+              </span>
+            </div>
+          ) : null}
+        </div>
 
         <div className="mt-3 flex items-center justify-between">
           <span className="font-display text-lg font-bold text-brand-dark">
