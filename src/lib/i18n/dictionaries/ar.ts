@@ -38,6 +38,9 @@ const ar: Dictionary = {
     deliveryTime: "التوصيل في 30 دقيقة",
     familyRecipes: "وصفات عائلية أصيلة",
     happyCustomers: "+2000 زبون راضي",
+    viewMenu: "شوف المنيو",
+    rating: "4.8/5 (+1200 تقييم)",
+    scrollDown: "اكتشف",
   },
   home: {
     chosenBadge: "اختيارنا لك",

@@ -38,6 +38,9 @@ const fr: Dictionary = {
     deliveryTime: "Livraison en 30 min",
     familyRecipes: "Recettes familiales",
     happyCustomers: "+2000 clients satisfaits",
+    viewMenu: "Voir le Menu",
+    rating: "4.8/5 (1200+ avis)",
+    scrollDown: "Découvrir",
   },
   home: {
     chosenBadge: "Notre sélection",

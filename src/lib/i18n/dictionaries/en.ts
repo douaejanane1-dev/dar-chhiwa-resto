@@ -36,6 +36,9 @@ const en = {
     deliveryTime: "30 min delivery",
     familyRecipes: "Family recipes",
     happyCustomers: "+2000 happy customers",
+    viewMenu: "View Menu",
+    rating: "4.8/5 (1200+ reviews)",
+    scrollDown: "Scroll",
   },
   home: {
     chosenBadge: "Our Selection",
