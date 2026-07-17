@@ -16,15 +16,6 @@
       "passwordHash": "$2a$10$C2.Ed6.LDxDIA9G0qj6cX.dwhsD6DLm0MhCPFgreyWTFQCE1uLy9q",
       "role": "customer",
       "createdAt": "2026-07-12T16:36:29.859Z"
-    },
-    {
-      "id": "1ef237d6-f6dc-4492-a9b0-d276aa8c35e5",
-      "createdAt": "2026-07-14T21:21:20.328Z",
-      "name": "Douae",
-      "email": "douae@gmail.com",
-      "phone": "0509080706",
-      "passwordHash": "$2a$10$twehqoQZvvQMFSAYzEG4P.cRqYFD8U4pUuSaydesAAy49zlWHpmG2",
-      "role": "customer"
     }
   ],
   "categories": [
@@ -96,13 +87,14 @@
       "descriptionAr": "كفتة متبلة مطبوخة فصلصة حمراء، مع البيض والزيتون.",
       "descriptionEn": "Spiced meatballs simmered in a rich tomato sauce with eggs and olives.",
       "price": 55,
-      "image": "https://picsum.photos/seed/resto-item-0/600/450",
+      "image": "https://images.unsplash.com/photo-1673283556513-282af10c9882?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 1,
       "tags": [
         "populaire"
-      ]
+      ],
+      "prepTime": 25
     },
     {
       "id": "9c8225e5-b6d6-48e6-8501-23cf48c941a1",
@@ -114,13 +106,14 @@
       "descriptionAr": "دجاج بلدي مطبوخ مع الزيتون الأخضر والحامض المرقد.",
       "descriptionEn": "Free-range chicken simmered with green olives, preserved lemon and Moroccan spices.",
       "price": 65,
-      "image": "https://picsum.photos/seed/resto-item-1/600/450",
+      "image": "https://images.unsplash.com/photo-1773209927959-b2959be5e684?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 0,
       "tags": [
         "chef"
-      ]
+      ],
+      "prepTime": 30
     },
     {
       "id": "f94fe688-5a75-4c83-9b5f-794753e27aa5",
@@ -132,11 +125,12 @@
       "descriptionAr": "لحم العجل مطبوخ مع البرقوق واللوز المحمص.",
       "descriptionEn": "Tender veal slow-cooked with prunes and toasted almonds, sweet-savory sauce.",
       "price": 80,
-      "image": "https://picsum.photos/seed/resto-item-2/600/450",
+      "image": "https://images.unsplash.com/photo-1520218508822-998633d997e6?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [],
+      "prepTime": 35
     },
     {
       "id": "fbe45f2c-f44a-42b9-bd7f-9540a5119f6f",
@@ -148,13 +142,14 @@
       "descriptionAr": "بروشيت لحم متبل، مشوي على الفحم.",
       "descriptionEn": "Beef skewers marinated in spices, chargrilled over charcoal.",
       "price": 60,
-      "image": "https://picsum.photos/seed/resto-item-3/600/450",
+      "image": "https://images.unsplash.com/photo-1632158929962-a929c9e87570?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 1,
       "tags": [
         "populaire"
-      ]
+      ],
+      "prepTime": 20
     },
     {
       "id": "fa3e9e6a-e7a4-4726-a07f-df177c7be4e8",
@@ -166,11 +161,12 @@
       "descriptionAr": "كفتة بلدية مشوية، مع البطاطا المقلية والسلطة.",
       "descriptionEn": "Traditional grilled kefta, served with fries and fresh salad.",
       "price": 50,
-      "image": "https://picsum.photos/seed/resto-item-4/600/450",
+      "image": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 2,
-      "tags": []
+      "tags": [],
+      "prepTime": 18
     },
     {
       "id": "7a6dbb4c-2295-4ea8-8e84-35263b4eb3f7",
@@ -182,11 +178,12 @@
       "descriptionAr": "ربع دجاج متبل بالشرمولة، مشوي.",
       "descriptionEn": "Quarter chicken marinated in chermoula, perfectly grilled.",
       "price": 58,
-      "image": "https://picsum.photos/seed/resto-item-5/600/450",
+      "image": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [],
+      "prepTime": 25
     },
     {
       "id": "ee05bcea-c752-408d-aeae-2dc0bab6cd61",
@@ -198,13 +195,14 @@
       "descriptionAr": "ميرغيز، سلطة، بطاطا مقلية وصلصة خاصة.",
       "descriptionEn": "Grilled merguez sausage, fresh salad, fries and house sauce.",
       "price": 25,
-      "image": "https://picsum.photos/seed/resto-item-6/600/450",
+      "image": "https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 2,
       "tags": [
         "populaire"
-      ]
+      ],
+      "prepTime": 10
     },
     {
       "id": "d4309c21-e828-4d16-b178-fdaa1f399a30",
@@ -216,11 +214,12 @@
       "descriptionAr": "كفتة، جبن وسلطة مشرملة.",
       "descriptionEn": "Kefta, melted cheese and marinated salad.",
       "price": 22,
-      "image": "https://picsum.photos/seed/resto-item-7/600/450",
+      "image": "https://images.unsplash.com/photo-1705131187470-9458824c0d79?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 1,
-      "tags": []
+      "tags": [],
+      "prepTime": 10
     },
     {
       "id": "b9800473-96d4-44b3-ab58-81770688ab5c",
@@ -232,13 +231,15 @@
       "descriptionAr": "دجاج، بطاطا مقلية، جبن وصلصة جزائرية.",
       "descriptionEn": "Chicken, fries, melted cheese and Algerian sauce.",
       "price": 30,
-      "image": "https://picsum.photos/seed/resto-item-8/600/450",
+      "image": "https://images.unsplash.com/photo-1613514785940-daed07799d9b?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 1,
       "tags": [
+        "nouveau",
         "populaire"
-      ]
+      ],
+      "prepTime": 12
     },
     {
       "id": "46f3ba6b-49b8-4a6b-b526-83c2681ee023",
@@ -250,11 +251,14 @@
       "descriptionAr": "صلصة الطماطم، الموزاريلا والريحان الطازج.",
       "descriptionEn": "Tomato sauce, melted mozzarella and fresh basil.",
       "price": 45,
-      "image": "https://picsum.photos/seed/resto-item-9/600/450",
+      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [
+        "vegetarien"
+      ],
+      "prepTime": 15
     },
     {
       "id": "bbb52e9d-16c7-467f-8b8e-046febef9038",
@@ -266,13 +270,15 @@
       "descriptionAr": "مزيج من 4 أنواع جبن على صلصة الكريمة.",
       "descriptionEn": "A blend of 4 melted cheeses on a creamy base.",
       "price": 60,
-      "image": "https://picsum.photos/seed/resto-item-10/600/450",
+      "image": "https://images.unsplash.com/photo-1732223229355-95a1433404bf?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 0,
       "tags": [
-        "chef"
-      ]
+        "chef",
+        "vegetarien"
+      ],
+      "prepTime": 16
     },
     {
       "id": "c1e7e90a-784f-4e78-b385-a48a43cd354f",
@@ -284,11 +290,14 @@
       "descriptionAr": "قريدس، كاليمار وصلصة طماطم متبلة.",
       "descriptionEn": "Shrimp, calamari and lightly spiced tomato sauce.",
       "price": 70,
-      "image": "https://picsum.photos/seed/resto-item-11/600/450",
+      "image": "https://images.unsplash.com/photo-1652952561151-97e82f26c336?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 1,
-      "tags": []
+      "tags": [
+        "nouveau"
+      ],
+      "prepTime": 18
     },
     {
       "id": "018d6ae2-d76b-4838-9326-774d65a63df8",
@@ -300,11 +309,12 @@
       "descriptionAr": "دجاج مشوي، جبن البارميزان وصلصة سيزار.",
       "descriptionEn": "Grilled chicken, parmesan, croutons and Caesar dressing.",
       "price": 35,
-      "image": "https://picsum.photos/seed/resto-item-12/600/450",
+      "image": "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [],
+      "prepTime": 8
     },
     {
       "id": "d9e4e08e-a20a-49fc-bb92-d237d682c2ae",
@@ -316,11 +326,14 @@
       "descriptionAr": "طماطم، خيار، بصل وزيت الزيتون.",
       "descriptionEn": "Tomatoes, cucumber, onion and olive oil.",
       "price": 20,
-      "image": "https://picsum.photos/seed/resto-item-13/600/450",
+      "image": "https://images.unsplash.com/photo-1629358101753-531fa5a2f661?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [
+        "vegetarien"
+      ],
+      "prepTime": 7
     },
     {
       "id": "d3c08f0d-7f1b-4963-b375-bce80bcd01bd",
@@ -332,11 +345,14 @@
       "descriptionAr": "مشروب غازي بارد.",
       "descriptionEn": "Chilled soft drink.",
       "price": 8,
-      "image": "https://picsum.photos/seed/resto-item-14/600/450",
+      "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [
+        "vegetarien"
+      ],
+      "prepTime": 1
     },
     {
       "id": "a3032d93-c989-41ff-a7cf-9451817ba413",
@@ -348,11 +364,14 @@
       "descriptionAr": "عصير برتقال طبيعي 100%.",
       "descriptionEn": "100% natural freshly squeezed orange juice.",
       "price": 15,
-      "image": "https://picsum.photos/seed/resto-item-15/600/450",
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [
+        "vegetarien"
+      ],
+      "prepTime": 5
     },
     {
       "id": "f206375b-9071-4421-a35a-a79cad929c73",
@@ -364,13 +383,15 @@
       "descriptionAr": "أتاي مغربي أصيل بالنعناع الطازج.",
       "descriptionEn": "Traditional Moroccan tea with fresh mint.",
       "price": 10,
-      "image": "https://picsum.photos/seed/resto-item-16/600/450",
+      "image": "https://images.unsplash.com/photo-1591299089616-c9604047b1a6?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 0,
       "tags": [
-        "populaire"
-      ]
+        "populaire",
+        "vegetarien"
+      ],
+      "prepTime": 5
     },
     {
       "id": "da7158bc-0a12-4cb0-99c5-48c3145ab83d",
@@ -382,11 +403,14 @@
       "descriptionAr": "مسمن سخون مع العسل والزبدة.",
       "descriptionEn": "Warm msemen served with honey and butter.",
       "price": 18,
-      "image": "https://picsum.photos/seed/resto-item-17/600/450",
+      "image": "https://images.unsplash.com/photo-1544726982-b414d58fabaa?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [
+        "vegetarien"
+      ],
+      "prepTime": 10
     },
     {
       "id": "ed3b4add-fab8-4dbc-85b4-d816f95583e6",
@@ -398,11 +422,14 @@
       "descriptionAr": "حلوى تقليدية بالعسل والسمسم.",
       "descriptionEn": "Traditional pastry with honey and sesame seeds.",
       "price": 20,
-      "image": "https://picsum.photos/seed/resto-item-18/600/450",
+      "image": "https://images.unsplash.com/photo-1574810134700-b6ba48d151a0?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": false,
       "spicyLevel": 0,
-      "tags": []
+      "tags": [
+        "vegetarien"
+      ],
+      "prepTime": 3
     },
     {
       "id": "3dc944f4-39ad-437b-9d2e-92474bfcf9fb",
@@ -414,94 +441,18 @@
       "descriptionAr": "كيك شوكولاطة سخون سائل، مع مثلجات الفانيليا.",
       "descriptionEn": "Warm molten chocolate cake, served with vanilla ice cream.",
       "price": 28,
-      "image": "https://picsum.photos/seed/resto-item-19/600/450",
+      "image": "https://images.unsplash.com/photo-1673551490812-eaee2e9bf0ef?w=800&h=600&fit=crop&q=80&auto=format",
       "isAvailable": true,
       "isFeatured": true,
       "spicyLevel": 0,
       "tags": [
-        "chef"
-      ]
+        "chef",
+        "vegetarien"
+      ],
+      "prepTime": 12
     }
   ],
-  "orders": [
-    {
-      "id": "f0f0135f-beb5-450e-b0c2-587def3f078a",
-      "createdAt": "2026-07-14T22:20:17.803Z",
-      "updatedAt": "2026-07-14T22:20:17.803Z",
-      "customerName": "Test User",
-      "customerPhone": "0600000000",
-      "items": [
-        {
-          "menuItemId": "test-1",
-          "name": "Tajine Poulet",
-          "price": 60,
-          "qty": 2,
-          "image": "/placeholder.jpg"
-        }
-      ],
-      "subtotal": 120,
-      "deliveryFee": 15,
-      "total": 135,
-      "status": "pending",
-      "paymentMethod": "card",
-      "paymentStatus": "unpaid",
-      "address": {
-        "label": "Home",
-        "details": "123 Rue Test",
-        "city": "Casablanca",
-        "phone": "0600000000",
-        "lat": 33.5731,
-        "lng": -7.5898
-      },
-      "notes": ""
-    },
-    {
-      "id": "5ccb8056-69d8-4f9d-8b3f-57d31e246122",
-      "createdAt": "2026-07-14T22:21:50.310Z",
-      "updatedAt": "2026-07-14T22:21:50.310Z",
-      "userId": "1ef237d6-f6dc-4492-a9b0-d276aa8c35e5",
-      "customerName": "Douae",
-      "customerPhone": "0908070606",
-      "items": [
-        {
-          "menuItemId": "9c8225e5-b6d6-48e6-8501-23cf48c941a1",
-          "name": "طاجين الدجاج بالزيتون",
-          "price": 65,
-          "qty": 1,
-          "image": "https://picsum.photos/seed/resto-item-1/600/450"
-        },
-        {
-          "menuItemId": "b9800473-96d4-44b3-ab58-81770688ab5c",
-          "name": "تاكوس دجاج",
-          "price": 30,
-          "qty": 1,
-          "image": "https://picsum.photos/seed/resto-item-8/600/450"
-        },
-        {
-          "menuItemId": "da7158bc-0a12-4cb0-99c5-48c3145ab83d",
-          "name": "مسمن بالعسل",
-          "price": 18,
-          "qty": 1,
-          "image": "https://picsum.photos/seed/resto-item-17/600/450"
-        }
-      ],
-      "subtotal": 113,
-      "deliveryFee": 15,
-      "total": 128,
-      "status": "pending",
-      "paymentMethod": "card",
-      "paymentStatus": "unpaid",
-      "address": {
-        "label": "",
-        "details": "victorfia",
-        "city": "Casablanca",
-        "phone": "0908070606",
-        "lat": 33.5731,
-        "lng": -7.5898
-      },
-      "notes": ""
-    }
-  ],
+  "orders": [],
   "settings": {
     "name": "Dar Chhiwa",
     "nameAr": "دار الشهيوة",
@@ -526,25 +477,5 @@
     "currency": "MAD",
     "instagram": "https://instagram.com",
     "facebook": "https://facebook.com"
-  },
-  "blogPosts": [
-    {
-      "id": "post-1",
-      "slug": "secrets-of-moroccan-tagine",
-      "title": "Les secrets d'un tagine marocain reussi",
-      "titleAr": "أسرار طاجين مغربي ناجح",
-      "titleEn": "Secrets of a Successful Moroccan Tagine",
-      "excerpt": "Decouvrez les techniques traditionnelles pour un tagine parfait a chaque fois.",
-      "excerptAr": "اكتشف التقنيات التقليدية لطاجين مثالي في كل مرة.",
-      "excerptEn": "Discover the traditional techniques for a perfect tagine every time.",
-      "content": "Le secret d'un bon tagine reside dans la cuisson lente et les epices fraiches...",
-      "contentAr": "يكمن سر الطاجين الجيد في الطهي البطيء والتوابل الطازجة...",
-      "contentEn": "The secret of a good tagine lies in slow cooking and fresh spices...",
-      "coverImage": "/uploads/blog-tagine.jpg",
-      "author": "Dar Chhiwa",
-      "published": true,
-      "createdAt": "2026-07-14T21:21:20.327Z",
-      "updatedAt": "2026-07-14T21:21:20.327Z"
-    }
-  ]
+  }
 }
