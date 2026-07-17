@@ -1,9 +1,7 @@
-import fs from "fs";
-import path from "path";
 import bcrypt from "bcryptjs";
-import { v4 as uuid } from "uuid";
+import { PrismaClient } from "@prisma/client";
 
-const DB_PATH = path.join(process.cwd(), "data", "db.json");
+const prisma = new PrismaClient();
 
 const img = (seed) => `https://picsum.photos/seed/${seed}/600/450`;
 
@@ -11,17 +9,15 @@ async function main() {
   const adminPass = await bcrypt.hash("admin123", 10);
   const customerPass = await bcrypt.hash("client123", 10);
 
-  const categories = [
-    { id: uuid(), name: "Tajines", nameAr: "طاجين", nameEn: "Tagines", icon: "cook-pot", order: 1 },
-    { id: uuid(), name: "Grillades", nameAr: "مشوي", nameEn: "Grills", icon: "flame", order: 2 },
-    { id: uuid(), name: "Sandwichs & Snacks", nameAr: "سندويشات", nameEn: "Sandwiches & Snacks", icon: "sandwich", order: 3 },
-    { id: uuid(), name: "Pizza", nameAr: "بيتزا", nameEn: "Pizza", icon: "pizza", order: 4 },
-    { id: uuid(), name: "Salades", nameAr: "سلطة", nameEn: "Salads", icon: "salad", order: 5 },
-    { id: uuid(), name: "Boissons", nameAr: "مشروبات", nameEn: "Drinks", icon: "cup-soda", order: 6 },
-    { id: uuid(), name: "Desserts", nameAr: "حلويات", nameEn: "Desserts", icon: "cake-slice", order: 7 },
+  const categoriesData = [
+    { name: "Tajines", nameAr: "طاجين", nameEn: "Tagines", icon: "cook-pot", order: 1 },
+    { name: "Grillades", nameAr: "مشوي", nameEn: "Grills", icon: "flame", order: 2 },
+    { name: "Sandwichs & Snacks", nameAr: "سندويشات", nameEn: "Sandwiches & Snacks", icon: "sandwich", order: 3 },
+    { name: "Pizza", nameAr: "بيتزا", nameEn: "Pizza", icon: "pizza", order: 4 },
+    { name: "Salades", nameAr: "سلطة", nameEn: "Salads", icon: "salad", order: 5 },
+    { name: "Boissons", nameAr: "مشروبات", nameEn: "Drinks", icon: "cup-soda", order: 6 },
+    { name: "Desserts", nameAr: "حلويات", nameEn: "Desserts", icon: "cake-slice", order: 7 },
   ];
-
-  const byName = Object.fromEntries(categories.map((c) => [c.name, c.id]));
 
   const items = [
     { cat: "Tajines", price: 55, tags: ["populaire"], spicy: 1, featured: true,
@@ -58,149 +54,191 @@ async function main() {
       name: "Sandwich Merguez", nameAr: "سندويش ميرغيز", nameEn: "Merguez Sandwich",
       desc: "Merguez grillée, salade fraîche, frites et sauce maison.",
       descAr: "ميرغيز، سلطة، بطاطا مقلية وصلصة خاصة.",
-      descEn: "Grilled merguez sausage, fresh salad, fries and house sauce." },
-    { cat: "Sandwichs & Snacks", price: 22, tags: [], spicy: 1, featured: false,
-      name: "Sandwich Kefta", nameAr: "سندويش كفتة", nameEn: "Kefta Sandwich",
-      desc: "Kefta, fromage fondu et salade marinée.",
-      descAr: "كفتة، جبن وسلطة مشرملة.",
-      descEn: "Kefta, melted cheese and marinated salad." },
-    { cat: "Sandwichs & Snacks", price: 30, tags: ["populaire"], spicy: 1, featured: true,
-      name: "Tacos Poulet", nameAr: "تاكوس دجاج", nameEn: "Chicken Tacos",
-      desc: "Poulet, frites, fromage fondu et sauce algérienne.",
-      descAr: "دجاج، بطاطا مقلية، جبن وصلصة جزائرية.",
-      descEn: "Chicken, fries, melted cheese and Algerian sauce." },
-    { cat: "Pizza", price: 45, tags: [], spicy: 0, featured: false,
+      descEn: "Grilled merguez, fresh salad, fries and house sauce." },
+    { cat: "Sandwichs & Snacks", price: 20, tags: [], spicy: 0, featured: false,
+      name: "Sandwich Poulet Panné", nameAr: "سندويش دجاج مقرمش", nameEn: "Crispy Chicken Sandwich",
+      desc: "Escalope de poulet panée, salade, sauce fromagère.",
+      descAr: "دجاج مقرمش، سلطة، صلصة الجبن.",
+      descEn: "Breaded chicken cutlet, salad, cheese sauce." },
+    { cat: "Pizza", price: 45, tags: ["populaire"], spicy: 0, featured: true,
       name: "Pizza Margherita", nameAr: "بيتزا مارغريتا", nameEn: "Margherita Pizza",
-      desc: "Sauce tomate, mozzarella fondante et basilic frais.",
-      descAr: "صلصة الطماطم، الموزاريلا والريحان الطازج.",
-      descEn: "Tomato sauce, melted mozzarella and fresh basil." },
-    { cat: "Pizza", price: 60, tags: ["chef"], spicy: 0, featured: true,
-      name: "Pizza 4 Fromages", nameAr: "بيتزا 4 أجبان", nameEn: "Four Cheese Pizza",
-      desc: "Mélange de 4 fromages fondants sur une base crème.",
-      descAr: "مزيج من 4 أنواع جبن على صلصة الكريمة.",
-      descEn: "A blend of 4 melted cheeses on a creamy base." },
-    { cat: "Pizza", price: 70, tags: [], spicy: 1, featured: false,
-      name: "Pizza Fruits de Mer", nameAr: "بيتزا المأكولات البحرية", nameEn: "Seafood Pizza",
-      desc: "Crevettes, calamars et sauce tomate légèrement épicée.",
-      descAr: "قريدس، كاليمار وصلصة طماطم متبلة.",
-      descEn: "Shrimp, calamari and lightly spiced tomato sauce." },
-    { cat: "Salades", price: 35, tags: [], spicy: 0, featured: false,
-      name: "Salade César", nameAr: "سلطة سيزار", nameEn: "Caesar Salad",
-      desc: "Poulet grillé, parmesan, croûtons et sauce César.",
-      descAr: "دجاج مشوي، جبن البارميزان وصلصة سيزار.",
-      descEn: "Grilled chicken, parmesan, croutons and Caesar dressing." },
-    { cat: "Salades", price: 20, tags: [], spicy: 0, featured: false,
+      desc: "Sauce tomate, mozzarella fondante, basilic frais.",
+      descAr: "صلصة الطماطم، جبن الموزاريلا، الريحان الطازج.",
+      descEn: "Tomato sauce, melted mozzarella, fresh basil." },
+    { cat: "Pizza", price: 55, tags: [], spicy: 1, featured: false,
+      name: "Pizza Merguez", nameAr: "بيتزا ميرغيز", nameEn: "Merguez Pizza",
+      desc: "Merguez épicée, poivrons, oignons, mozzarella.",
+      descAr: "ميرغيز متبلة، فليفلة، بصل، موزاريلا.",
+      descEn: "Spiced merguez, peppers, onions, mozzarella." },
+    { cat: "Salades", price: 30, tags: [], spicy: 0, featured: false,
       name: "Salade Marocaine", nameAr: "سلطة مغربية", nameEn: "Moroccan Salad",
-      desc: "Tomates, concombre, oignon et huile d'olive.",
-      descAr: "طماطم، خيار، بصل وزيت الزيتون.",
-      descEn: "Tomatoes, cucumber, onion and olive oil." },
-    { cat: "Boissons", price: 8, tags: [], spicy: 0, featured: false,
-      name: "Coca-Cola 33cl", nameAr: "كوكا كولا", nameEn: "Coca-Cola 33cl",
-      desc: "Boisson gazeuse fraîche.",
-      descAr: "مشروب غازي بارد.",
-      descEn: "Chilled soft drink." },
-    { cat: "Boissons", price: 15, tags: [], spicy: 0, featured: false,
+      desc: "Tomates, concombres, oignons, coriandre, huile d'olive.",
+      descAr: "طماطم، خيار، بصل، كزبرة، زيت الزيتون.",
+      descEn: "Tomatoes, cucumbers, onions, coriander, olive oil." },
+    { cat: "Salades", price: 40, tags: ["chef"], spicy: 0, featured: false,
+      name: "Salade César au Poulet", nameAr: "سلطة سيزار بالدجاج", nameEn: "Chicken Caesar Salad",
+      desc: "Poulet grillé, laitue romaine, parmesan, croutons, sauce césar.",
+      descAr: "دجاج مشوي، خس، جبن البارميزان، صلصة السيزار.",
+      descEn: "Grilled chicken, romaine lettuce, parmesan, croutons, caesar dressing." },
+    { cat: "Boissons", price: 12, tags: [], spicy: 0, featured: false,
       name: "Jus d'Orange Frais", nameAr: "عصير برتقال طازج", nameEn: "Fresh Orange Juice",
-      desc: "Jus d'orange 100% naturel pressé minute.",
-      descAr: "عصير برتقال طبيعي 100%.",
-      descEn: "100% natural freshly squeezed orange juice." },
-    { cat: "Boissons", price: 10, tags: ["populaire"], spicy: 0, featured: true,
+      desc: "Pressé minute, 100% naturel.",
+      descAr: "معصور طازج، 100% طبيعي.",
+      descEn: "Freshly squeezed, 100% natural." },
+    { cat: "Boissons", price: 8, tags: [], spicy: 0, featured: false,
       name: "Thé à la Menthe", nameAr: "أتاي بالنعناع", nameEn: "Mint Tea",
-      desc: "Thé marocain traditionnel à la menthe fraîche.",
-      descAr: "أتاي مغربي أصيل بالنعناع الطازج.",
-      descEn: "Traditional Moroccan tea with fresh mint." },
-    { cat: "Desserts", price: 18, tags: [], spicy: 0, featured: false,
-      name: "Msemen au Miel", nameAr: "مسمن بالعسل", nameEn: "Msemen with Honey",
-      desc: "Msemen chaud servi avec du miel et du beurre.",
-      descAr: "مسمن سخون مع العسل والزبدة.",
-      descEn: "Warm msemen served with honey and butter." },
-    { cat: "Desserts", price: 20, tags: [], spicy: 0, featured: false,
+      desc: "Thé vert traditionnel à la menthe fraîche.",
+      descAr: "أتاي أخضر تقليدي بالنعناع الطازج.",
+      descEn: "Traditional green tea with fresh mint." },
+    { cat: "Desserts", price: 18, tags: ["populaire"], spicy: 0, featured: true,
       name: "Chebakia", nameAr: "شباكية", nameEn: "Chebakia",
-      desc: "Pâtisserie traditionnelle au miel et graines de sésame.",
-      descAr: "حلوى تقليدية بالعسل والسمسم.",
-      descEn: "Traditional pastry with honey and sesame seeds." },
-    { cat: "Desserts", price: 28, tags: ["chef"], spicy: 0, featured: true,
-      name: "Fondant au Chocolat", nameAr: "فوندان بالشوكولاطة", nameEn: "Chocolate Fondant",
-      desc: "Gâteau au chocolat chaud et coulant, servi avec glace vanille.",
-      descAr: "كيك شوكولاطة سخون سائل، مع مثلجات الفانيليا.",
-      descEn: "Warm molten chocolate cake, served with vanilla ice cream." },
+      desc: "Pâtisserie marocaine au miel et sésame, faite maison.",
+      descAr: "حلوى مغربية بالعسل والسمسم، صنع منزلي.",
+      descEn: "Homemade Moroccan pastry with honey and sesame." },
+    { cat: "Desserts", price: 22, tags: [], spicy: 0, featured: false,
+      name: "Cornes de Gazelle", nameAr: "كعب الغزال", nameEn: "Gazelle Horns",
+      desc: "Pâte d'amande parfumée à la fleur d'oranger.",
+      descAr: "عجينة اللوز بنكهة زهر البرتقال.",
+      descEn: "Almond paste flavored with orange blossom." },
+    { cat: "Sandwichs & Snacks", price: 22, tags: [], spicy: 1, featured: false,
+      name: "Panini Kefta", nameAr: "بانيني كفتة", nameEn: "Kefta Panini",
+      desc: "Kefta grillée, fromage fondu, pain panini croustillant.",
+      descAr: "كفتة مشوية، جبن مذاب، خبز باني مقرمش.",
+      descEn: "Grilled kefta, melted cheese, crispy panini bread." },
+    { cat: "Grillades", price: 90, tags: ["chef"], spicy: 0, featured: true,
+      name: "Mixed Grill Royal", nameAr: "مشاوي مشكلة رويال", nameEn: "Royal Mixed Grill",
+      desc: "Assortiment de brochettes, merguez et kefta, riz et légumes grillés.",
+      descAr: "تشكيلة بروشيت، ميرغيز وكفتة، أرز وخضار مشوية.",
+      descEn: "Assortment of skewers, merguez and kefta, rice and grilled vegetables." },
+    { cat: "Pizza", price: 60, tags: [], spicy: 0, featured: false,
+      name: "Pizza 4 Fromages", nameAr: "بيتزا 4 أجبان", nameEn: "4-Cheese Pizza",
+      desc: "Mozzarella, gouda, chèvre, parmesan.",
+      descAr: "موزاريلا، غودا، جبن الماعز، بارميزان.",
+      descEn: "Mozzarella, gouda, goat cheese, parmesan." },
+    { cat: "Boissons", price: 10, tags: [], spicy: 0, featured: false,
+      name: "Eau Minérale", nameAr: "ماء معدني", nameEn: "Mineral Water",
+      desc: "Bouteille 50cl.",
+      descAr: "قنينة 50 سل.",
+      descEn: "50cl bottle." },
   ];
 
-  const menuItems = items.map((it, i) => ({
-    id: uuid(),
-    categoryId: byName[it.cat],
-    name: it.name,
-    nameAr: it.nameAr,
-    nameEn: it.nameEn,
-    description: it.desc,
-    descriptionAr: it.descAr,
-    descriptionEn: it.descEn,
-    price: it.price,
-    image: img(`resto-item-${i}`),
-    isAvailable: true,
-    isFeatured: !!it.featured,
-    spicyLevel: it.spicy,
-    tags: it.tags,
-  }));
+  await prisma.$transaction(async (tx) => {
+    // Reset (idempotent re-seed) — order matters for FK constraints.
+    await tx.orderItem.deleteMany();
+    await tx.order.deleteMany();
+    await tx.review.deleteMany();
+    await tx.reservation.deleteMany();
+    await tx.customer.deleteMany();
+    await tx.menuItem.deleteMany();
+    await tx.category.deleteMany();
+    await tx.blogPost.deleteMany();
+    await tx.user.deleteMany();
+    await tx.restaurantSettings.deleteMany();
 
-  const users = [
-    {
-      id: uuid(),
-      name: "Admin Dar Chhiwa",
-      email: "admin@darchhiwa.ma",
-      passwordHash: adminPass,
-      role: "admin",
-      createdAt: new Date().toISOString(),
-    },
-    {
-      id: uuid(),
-      name: "Client Demo",
-      email: "client@darchhiwa.ma",
-      phone: "+212600000001",
-      passwordHash: customerPass,
-      role: "customer",
-      createdAt: new Date().toISOString(),
-    },
-  ];
+    const createdCategories = {};
+    for (const c of categoriesData) {
+      const created = await tx.category.create({ data: c });
+      createdCategories[c.name] = created.id;
+    }
 
-  const db = {
-    users,
-    categories,
-    menuItems,
-    orders: [],
-    settings: {
-      name: "Dar Chhiwa",
-      nameAr: "دار الشهيوة",
-      nameEn: "Dar Chhiwa",
-      tagline: "Le goût authentique, à votre porte",
-      taglineAr: "الطعم الأصيل، على بابك",
-      taglineEn: "Authentic taste, at your door",
-      description:
-        "Cuisine marocaine authentique, preparee chaque jour avec des ingredients frais et des recettes familiales. Livraison rapide jusqu'a votre porte.",
-      descriptionAr: "مطبخ مغربي أصيل، طبخ يومي بمكونات طازجة ووصفات عائلية. توصيل سريع لباب الدار.",
-      descriptionEn: "Authentic Moroccan cuisine, cooked daily with fresh ingredients and family recipes. Fast delivery to your door.",
-      logo: "",
-      coverImage: img("resto-hero"),
-      phone: "+212 6 00 00 00 00",
-      email: "contact@darchhiwa.ma",
-      address: "Zenkat Al Massira, Hay Al Farah",
-      city: "Casablanca",
-      lat: 33.5731,
-      lng: -7.5898,
-      openingHours: "Tous les jours: 11h00 - 23h30",
-      deliveryFee: 15,
-      minOrder: 60,
-      currency: "MAD",
-      instagram: "https://instagram.com",
-      facebook: "https://facebook.com",
-    },
-  };
+    for (let i = 0; i < items.length; i++) {
+      const it = items[i];
+      await tx.menuItem.create({
+        data: {
+          categoryId: createdCategories[it.cat],
+          name: it.name,
+          nameAr: it.nameAr,
+          nameEn: it.nameEn,
+          description: it.desc,
+          descriptionAr: it.descAr,
+          descriptionEn: it.descEn,
+          price: it.price,
+          image: img(`resto-item-${i}`),
+          isAvailable: true,
+          isFeatured: !!it.featured,
+          spicyLevel: it.spicy,
+          tags: it.tags,
+        },
+      });
+    }
 
-  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
-  fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2));
-  console.log("Seed dyal la base de données temmat b najah!");
+    await tx.user.create({
+      data: {
+        name: "Admin Dar Chhiwa",
+        email: "admin@darchhiwa.ma",
+        passwordHash: adminPass,
+        role: "admin",
+      },
+    });
+    await tx.user.create({
+      data: {
+        name: "Client Demo",
+        email: "client@darchhiwa.ma",
+        phone: "+212600000001",
+        passwordHash: customerPass,
+        role: "customer",
+      },
+    });
+
+    await tx.restaurantSettings.create({
+      data: {
+        id: "default",
+        name: "Dar Chhiwa",
+        nameAr: "دار الشهيوة",
+        nameEn: "Dar Chhiwa",
+        tagline: "Le goût authentique, à votre porte",
+        taglineAr: "الطعم الأصيل، على بابك",
+        taglineEn: "Authentic taste, at your door",
+        description:
+          "Cuisine marocaine authentique, preparee chaque jour avec des ingredients frais et des recettes familiales. Livraison rapide jusqu'a votre porte.",
+        descriptionAr: "مطبخ مغربي أصيل، طبخ يومي بمكونات طازجة ووصفات عائلية. توصيل سريع لباب الدار.",
+        descriptionEn: "Authentic Moroccan cuisine, cooked daily with fresh ingredients and family recipes. Fast delivery to your door.",
+        logo: "",
+        coverImage: img("resto-hero"),
+        phone: "+212 6 00 00 00 00",
+        email: "contact@darchhiwa.ma",
+        address: "Zenkat Al Massira, Hay Al Farah",
+        city: "Casablanca",
+        lat: 33.5731,
+        lng: -7.5898,
+        openingHours: "Tous les jours: 11h00 - 23h30",
+        deliveryFee: 15,
+        minOrder: 60,
+        currency: "MAD",
+        instagram: "https://instagram.com",
+        facebook: "https://facebook.com",
+      },
+    });
+
+    await tx.blogPost.create({
+      data: {
+        slug: "secrets-of-moroccan-tagine",
+        title: "Les secrets d'un tagine marocain reussi",
+        titleAr: "أسرار طاجين مغربي ناجح",
+        titleEn: "Secrets of a Successful Moroccan Tagine",
+        excerpt: "Decouvrez les techniques traditionnelles pour un tagine parfait a chaque fois.",
+        excerptAr: "اكتشف التقنيات التقليدية لطاجين مثالي في كل مرة.",
+        excerptEn: "Discover the traditional techniques for a perfect tagine every time.",
+        content: "Le secret d'un bon tagine reside dans la cuisson lente et les epices fraiches...",
+        contentAr: "يكمن سر الطاجين الجيد في الطهي البطيء والتوابل الطازجة...",
+        contentEn: "The secret of a good tagine lies in slow cooking and fresh spices...",
+        coverImage: "/uploads/blog-tagine.jpg",
+        author: "Dar Chhiwa",
+        published: true,
+      },
+    });
+  });
+
+  console.log("Seed dyal la base de données temmat b najah! (PostgreSQL)");
   console.log("Admin: admin@darchhiwa.ma / admin123");
   console.log("Client: client@darchhiwa.ma / client123");
 }
 
-main();
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
