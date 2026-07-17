@@ -13,7 +13,7 @@ Template kaml o jahz bach tbi3ha l ay restaurant wla snack: site web modern b an
 - **Leaflet / React-Leaflet** — Carte interactive bach l client ykhtar blasa dyal livraison (bla API key)
 - **Recharts** — Charts f admin dashboard
 - **Zustand** — State management dyal panier (persisté f localStorage)
-- **Base de données** — Fichier JSON local (`data/db.json`), simple o bla configuration. Sahla bach tbeddelha l Postgres/MySQL m3a Prisma wla Drizzle mnin ghatkoun jahz l production b scale kbira.
+- **Base de données** — PostgreSQL via Prisma ORM (schema normalisé, migrations, UUIDs, indexes). Sahla tconnectiha b Vercel Postgres, Neon, Supabase, wla ay host Postgres.
 - **SEO** — Sitemap.xml, robots.txt, JSON-LD (Restaurant/Organization/Article schema), Open Graph + Twitter Cards, canonical URLs
 - **Sécurité** — Headers (CSP, HSTS, X-Frame-Options...), rate limiting f login/register/orders/checkout
 - **Accessibilité (WCAG)** — Skip-to-content, focus visible, aria-labels, RTL/keyboard support, `prefers-reduced-motion`
@@ -21,16 +21,26 @@ Template kaml o jahz bach tbi3ha l ay restaurant wla snack: site web modern b an
 - **Blog / CMS-lite** — `/blog` + admin CRUD, contenu FR/AR/EN
 - **Docker + CI/CD + Tests** — Dockerfile multi-stage, docker-compose, GitHub Actions (lint/typecheck/test/build), Vitest
 
-Machi mehtaj Docker, Prisma, wla base de données externe bach tkhdem f local — kolshi khdam b `npm install` o `npm run dev`. Docker howa optionnel, mojoud ila bghiti deploy b conteneur (chouf section "Docker" f taht).
+Khass wa7ed base de données PostgreSQL bach tkhdem (local via Docker, wla free tier b7al Neon/Supabase/Vercel Postgres — chouf section "Base de données" f taht). Docker howa optionnel, mojoud ila bghiti deploy b conteneur (chouf section "Docker" f taht).
 
 ## Kifach Tbda (Installation)
 
 ```bash
 npm install
-cp .env.example .env
-npm run seed      # kayzra3 categories, atbaq, o comptes demo
-npm run dev        # http://localhost:3000
+cp .env.example .env          # zid DATABASE_URL (chouf section "Base de données")
+npx prisma migrate deploy     # kaycree les tables f la base de données
+npm run seed                  # kayzra3 categories, atbaq, o comptes demo
+npm run dev                   # http://localhost:3000
 ```
+
+### Base de données (PostgreSQL)
+
+Had le projet kayst3ml PostgreSQL (via Prisma ORM), machi fichier JSON. Bach tkhdem local:
+
+- **Sahel/rapide**: sajel compte b7al [Neon](https://neon.tech) wla [Supabase](https://supabase.com) (free tier, connection string jahza f 30 secondes), o coller-ha f `DATABASE_URL` (`.env`).
+- **Docker local**: `docker compose up db` kaytelli3lek Postgres local (chouf `docker-compose.yml`), o `DATABASE_URL="postgresql://darchhiwa:xxx@localhost:5432/darchhiwa?schema=public"`.
+
+Mnin ykoun `DATABASE_URL` mzabout, `npx prisma migrate deploy` (wla `npm run prisma:migrate` f dev) kaycree les tables, o `npm run seed` kayzra3 data.
 
 ## Comptes Demo
 
@@ -89,7 +99,7 @@ docker compose up --build
 ```
 
 - `Dockerfile` multi-stage (deps → build → runtime Alpine), b Next.js `output: "standalone"` bach l image tkoun sghira.
-- `docker-compose.yml` kayzid volumes persistants l `data/` (base JSON) o `public/uploads/` (images) bach ma yt2ay9ouch mnin l conteneur y restart.
+- `docker-compose.yml` kayzid wa7ed service `db` (Postgres 16) o volume persistant l `public/uploads/` (images) bach ma yt2ay9ouch mnin l conteneur y restart. `web` service kaysenna l `db` ykoun healthy qbel ma ybda, o kaydir `prisma migrate deploy` automatiquement (chouf `CMD` f `Dockerfile`).
 - `.dockerignore` kaystbaad `node_modules`, `.next`, o data locale mn l build context.
 
 ## CI/CD (GitHub Actions)
@@ -115,7 +125,7 @@ Tests kaycouvriw l logique pure: `slugify`, helpers dyal i18n (`localizedField`,
 1. **Beddel l identité**: smiya, logo, couleurs (f `src/app/globals.css`, variables `--brand`, `--gold`, `--accent`), contenu dyal Menu (mn Admin Dashboard wla `scripts/seed.mjs`)
 2. **AUTH_SECRET**: dir secret jdid f `.env` — `openssl rand -base64 32`
 3. **Stripe**: sajel compte f [dashboard.stripe.com](https://dashboard.stripe.com/register), khod `STRIPE_SECRET_KEY` (test mode l bidaya), zidha f `.env`. Chouf note 3la Maroc f fou9.
-4. **Base de données**: `data/db.json` khdama mzyan l projets sghar/متوسطين. Ila l client 3ndo bzaf dyal commandes/trafic, sahl tbeddelha b Postgres (Prisma/Drizzle) — la structure dyal `src/lib/db/repo.ts` mbnia bach tbeddel ghir l couche dyal data, l API routes ma khassox ybedlou.
+4. **Base de données**: PostgreSQL (Prisma). Sajel compte f [Neon](https://neon.tech), [Supabase](https://supabase.com), wla [Vercel Postgres](https://vercel.com/storage/postgres) (free tier kayfaster l bidaya), zid `DATABASE_URL` f environment variables dyal l hosting, o Vercel ghadi ykhdem `prisma migrate deploy` automatiquement (`vercel-build` script). `npm run seed` kayzra3 categories/atbaq/comptes demo.
 5. **Images**: uploads kayb9au f `public/uploads` (local disk). L production (Vercel/hosting serverless) khass tbeddelhom l S3/Cloudinary bach ma yt2ay9ouch mnin l serveur y restart. Ila deployiti b Docker/VPS, `docker-compose.yml` kayzid volume persistant `resto-uploads` bach l images ma yt2ay9ouch.
 6. **Deploy**: `npm run build && npm run start`, wla deploy f Vercel/Railway/VPS b Node.js 20+. Ila 3andek Stripe, khass tzid `STRIPE_SECRET_KEY` f environment variables dyal l hosting.
 
@@ -142,7 +152,8 @@ src/
     slugify.ts          → Helper slug (partagé blog + tests)
   auth.ts / auth.config.ts / middleware.ts → Authentification
 scripts/seed.mjs        → Seed dyal demo data (FR/AR/EN)
-data/db.json             → Base de données (JSON file)
+prisma/schema.prisma     → Schéma dyal la base de données (models, relations, indexes)
+prisma/migrations/       → Migrations SQL (version-controlled)
 Dockerfile, docker-compose.yml → Conteneurisation
 .github/workflows/ci.yml → CI/CD
 vitest.config.ts, src/**/__tests__/ → Tests

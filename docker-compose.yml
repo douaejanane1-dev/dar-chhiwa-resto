@@ -1,19 +1,38 @@
 services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=darchhiwa
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your .env file}
+      - POSTGRES_DB=darchhiwa
+    volumes:
+      - resto-postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U darchhiwa"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   web:
     build: .
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
+      - DATABASE_URL=postgresql://darchhiwa:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your .env file}@db:5432/darchhiwa?schema=public
       - AUTH_SECRET=${AUTH_SECRET:?Set AUTH_SECRET in your .env file}
       - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
     volumes:
-      # Persist the JSON database and uploaded images across restarts/deploys
-      - resto-data:/app/data
+      # Persist uploaded images across restarts/deploys (the database itself
+      # lives in the `db` service above, not on disk here).
       - resto-uploads:/app/public/uploads
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
 volumes:
-  resto-data:
+  resto-postgres:
   resto-uploads:
