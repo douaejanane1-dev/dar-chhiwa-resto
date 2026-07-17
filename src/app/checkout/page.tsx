@@ -17,10 +17,10 @@ export default async function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-14">
-      <h1 className="font-display text-3xl font-extrabold text-stone-800 mb-2">
+      <h1 className="font-display text-3xl font-extrabold text-stone-800 dark:text-stone-100 mb-2">
         {dict.checkout.title}
       </h1>
-      <p className="text-sm text-stone-500 mb-10">{dict.checkout.subtitle}</p>
+      <p className="text-sm text-stone-500 dark:text-stone-400 mb-10">{dict.checkout.subtitle}</p>
       <CheckoutForm
         settings={settings}
         defaultName={session?.user?.name || ""}
