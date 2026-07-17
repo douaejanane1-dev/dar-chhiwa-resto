@@ -17,7 +17,7 @@ const statusColor: Record<string, string> = {
 
 export default async function AccountOrdersPage() {
   const session = await auth();
-  const orders = session?.user?.id ? getOrdersByUser(session.user.id) : [];
+  const orders = session?.user?.id ? await getOrdersByUser(session.user.id) : [];
   const cookieStore = await cookies();
   const localeValue = cookieStore.get(COOKIE_NAME)?.value;
   const locale = isValidLocale(localeValue) ? localeValue : defaultLocale;
