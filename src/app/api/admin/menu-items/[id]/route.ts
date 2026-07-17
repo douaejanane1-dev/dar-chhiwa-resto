@@ -14,7 +14,7 @@ export async function PUT(
   if (!(await requireAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const { id } = await params;
   const body = await req.json();
-  const item = updateMenuItem(id, body);
+  const item = await updateMenuItem(id, body);
   if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(item);
 }
@@ -25,7 +25,7 @@ export async function DELETE(
 ) {
   if (!(await requireAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const { id } = await params;
-  const ok = deleteMenuItem(id);
+  const ok = await deleteMenuItem(id);
   if (!ok) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({ success: true });
 }
