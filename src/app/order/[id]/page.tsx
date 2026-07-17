@@ -52,37 +52,37 @@ export default async function OrderConfirmationPage({
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 text-accent animate-float">
           <PartyPopper size={30} />
         </div>
-        <h1 className="font-display text-3xl font-extrabold text-stone-800">
+        <h1 className="font-display text-3xl font-extrabold text-stone-800 dark:text-stone-100">
           {dict.order.thankYou} {order.customerName}!
         </h1>
-        <p className="mt-2 text-stone-500">
+        <p className="mt-2 text-stone-500 dark:text-stone-400">
           {dict.account.orderNumber} #{order.id.slice(0, 8).toUpperCase()} — {dict.order.placed}
         </p>
       </div>
 
-      <div className="rounded-2xl border border-stone-100 bg-white p-6 shadow-sm mb-6">
+      <div className="rounded-2xl border border-stone-100 dark:border-white/10 bg-white dark:bg-surface p-6 shadow-sm mb-6">
         <OrderStatusTracker status={order.status} />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-6">
-        <div className="rounded-2xl border border-stone-100 bg-white p-6 shadow-sm">
-          <h2 className="font-display font-bold text-stone-800 mb-4">{dict.order.orderDetails}</h2>
+        <div className="rounded-2xl border border-stone-100 dark:border-white/10 bg-white dark:bg-surface p-6 shadow-sm">
+          <h2 className="font-display font-bold text-stone-800 dark:text-stone-100 mb-4">{dict.order.orderDetails}</h2>
           <div className="space-y-2">
             {order.items.map((it) => (
               <div key={it.menuItemId} className="flex justify-between text-sm">
-                <span className="text-stone-600">
+                <span className="text-stone-600 dark:text-stone-300">
                   {it.qty}x {it.name}
                 </span>
-                <span className="font-medium text-stone-800">{it.price * it.qty} MAD</span>
+                <span className="font-medium text-stone-800 dark:text-stone-100">{it.price * it.qty} MAD</span>
               </div>
             ))}
           </div>
-          <div className="mt-4 pt-4 border-t space-y-1 text-sm">
-            <div className="flex justify-between text-stone-500">
+          <div className="mt-4 pt-4 border-t border-stone-100 dark:border-white/10 space-y-1 text-sm">
+            <div className="flex justify-between text-stone-500 dark:text-stone-400">
               <span>{dict.order.subtotal}</span>
               <span>{order.subtotal} MAD</span>
             </div>
-            <div className="flex justify-between text-stone-500">
+            <div className="flex justify-between text-stone-500 dark:text-stone-400">
               <span>{dict.order.delivery}</span>
               <span>{order.deliveryFee} MAD</span>
             </div>
@@ -93,17 +93,17 @@ export default async function OrderConfirmationPage({
           </div>
         </div>
 
-        <div className="rounded-2xl border border-stone-100 bg-white p-6 shadow-sm space-y-4">
-          <h2 className="font-display font-bold text-stone-800">{dict.order.deliveryInfo}</h2>
-          <div className="flex items-start gap-2 text-sm text-stone-600">
+        <div className="rounded-2xl border border-stone-100 dark:border-white/10 bg-white dark:bg-surface p-6 shadow-sm space-y-4">
+          <h2 className="font-display font-bold text-stone-800 dark:text-stone-100">{dict.order.deliveryInfo}</h2>
+          <div className="flex items-start gap-2 text-sm text-stone-600 dark:text-stone-300">
             <MapPin size={16} className="mt-0.5 text-brand shrink-0" />
             {order.address.label} — {order.address.details}, {order.address.city}
           </div>
-          <div className="flex items-center gap-2 text-sm text-stone-600">
+          <div className="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-300">
             <Phone size={16} className="text-brand shrink-0" />
             {order.customerPhone}
           </div>
-          <div className="flex items-center gap-2 text-sm text-stone-600">
+          <div className="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-300">
             <CreditCard size={16} className="text-brand shrink-0" />
             {order.paymentMethod === "cod" ? dict.checkout.cod : dict.checkout.card} — {paymentStatusLabel}
           </div>
